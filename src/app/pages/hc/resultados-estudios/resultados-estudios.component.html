@@ -1,0 +1,227 @@
+<div class="container-fluid">
+  <div class="row contenidoTitle">
+      <div class="col">
+          <h1> Resultados de estudios </h1>
+      </div>
+  </div>
+  <div class='row'>
+      <div class='col'>
+          <div class='card'>
+              <div class='card-body'>
+                  <div class='row'>
+                      <div class="col">
+                          <div class="row componenteFiltroResultados">
+                              <div class="col-auto filtroResultados__label">
+                                  <p>Filtrar resultados</p>
+                              </div>
+                              <div class="col filtroResultados__switch">
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-vaso fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Laboratorio químico</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-probeta fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Hematología y Oncología</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-chupete fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Imagenes y digitalizaciones</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-chupete fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Anatomía patológica</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-chupete fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Histocompatibilidad y Biología Molecular</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <hr>
+                              </div>
+                          </div>
+                      </div>
+                      <div class='col-12 headTable'>
+                          <div class='row align-items-center'>
+                              <div class='col-auto'>
+                                  <div class='row componenteMostrarCantidadRegistros'>
+                                      <div class='col-auto control-label-between'>
+                                          <p>Mostrar</p>
+                                      </div>
+                                      <div class='col'>
+                                          <div class='form-group'>
+                                              <select class='form-control'>
+                                                  <option value='' selected=''>10</option>
+                                                  <option value=''>25</option>
+                                                  <option value=''>50</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class='col-auto control-label-between'>
+                                          <p>registros</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-auto col-lg-4 col-xl-3 ml-auto">
+                                  <div class='form-group componenteBusqueda'>
+                                      <div class='input-group'>
+                                          <div class='input-group-prepend'>
+                                              <span class='input-group-text'><i class='fa fa-search' aria-hidden='true'></i></span>
+                                          </div>
+                                          <input type='text' class='form-control' placeholder="Buscar" [(ngModel)]="strBuscar" (ngModelChange)="buscar()">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="table-responsive">
+                              <table class='table'>
+                                  <thead>
+                                      <tr>
+                                          <th class="tableOrderBy--active">Fecha <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Estudio realizado <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy text-center" width="125">Informe <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody *ngFor="let i of informesFiltrados">
+                                      <tr>
+                                          <td>{{i.FechaRealizacion}}</td>
+                                          <td>{{i.Estudio}}</td>
+                                          <td style="cursor: pointer;" class="text-center"(click)="openModal(i)" ><i class= "{{i.getClass()}} fa-fw" aria-hidden="true"></i></td>
+                                      </tr>
+                                    
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <nav class="componentePaginador">
+                              <ul class="pagination">
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row contenidoCardsAccess">
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--medicamentos">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>¿Cómo se llamaba? ¿Hace cuánto que lo tomo?</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Todos sus medicamentos, fecha de indicación, vigencia de tratamientos y más...</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--profesionales">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-user-md fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>Todas sus visitas al Hospital y centros</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Recuerde cuándo, donde, quien y de que servicio fue atendido.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--turnos">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>Solicite su Turno Online</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Gestione sus turnos online de forma segura y confiable</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

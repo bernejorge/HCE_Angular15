@@ -1,0 +1,207 @@
+<div class="container-fluid">
+  <div class="row contenidoTitle">
+      <div class="col">
+          <h1> Profesionales visitados </h1>
+      </div>
+  </div>
+  <div class="row contenidoAlerts" *ngIf="turnos!.length<=0">
+    <div class="col">
+        <div class="alertContainer--primary resultados container-fluid">
+            <div class="row alertRow">
+                <div class="col-auto alert__icon">
+                    <i class="fa fa-fw" aria-hidden="true"></i>
+                </div>
+                <div class="col alert__message">
+                    <p>No se registran <strong>Resultados de estudios</strong> en su Historia clínica.</p>
+                </div>
+                <div class="col-auto alert__close">
+                    <a href="#">
+                        <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class='row' *ngIf="turnos!.length>0">
+      <div class='col'>
+          <div class='card'>
+              <div class='card-body'>
+                  <div class='row'>
+                      <div class='col-12 headTable'>
+                          <div class='row align-items-center'>
+                              <div class='col-auto'>
+                                  <div class='row componenteMostrarCantidadRegistros'>
+                                      <div class='col-auto control-label-between'>
+                                          <p>Mostrar</p>
+                                      </div>
+                                      <div class='col'>
+                                          <div class='form-group'>
+                                              <select class='form-control'>
+                                                  <option value='' selected=''>10</option>
+                                                  <option value=''>25</option>
+                                                  <option value=''>50</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class='col-auto control-label-between'>
+                                          <p>registros</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-auto col-lg-4 col-xl-3 ml-auto">
+                                  <div class='form-group componenteBusqueda'>
+                                      <div class='input-group'>
+                                          <div class='input-group-prepend'>
+                                              <span class='input-group-text'><i class='fa fa-search' aria-hidden='true'></i></span>
+                                          </div>
+                                          <input type='text' class='form-control' placeholder="Buscar">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="table-responsive">
+                              <table class='table'>
+                                  <thead>
+                                      <tr>
+                                          <th class="tableOrderBy--active">Fecha <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Servicio <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Centro de atención <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Profesional <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody *ngFor="let t of turnos">
+                                      <tr>
+                                          <td>{{t.Fecha}}</td>
+                                          <td>{{t.Especialidad}}</td>
+                                          <td>{{t.Lugar}}</td>
+                                          <td>{{t.Medico}}</td>
+                                      </tr>
+                                     
+                                      <!-- <tr>
+                                          <td>00-00-0000</td>
+                                          <td>Gastroenteritis</td>
+                                          <td>Hospital Privado</td>
+                                          <td>Gastroenteritis</td>
+                                      </tr> -->
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <nav class="componentePaginador">
+                              <ul class="pagination">
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row contenidoCardsAccess">
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--medicamentos">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>¿Cómo se llamaba? ¿Hace cuánto que lo tomo?</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Todos sus medicamentos, fecha de indicación, vigencia de tratamientos y más...</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--estudios">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-laptop fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>¡Tus estudios al instante!</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Visualiza, compara y resguarda tus estudios de forma simple y segura.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--turnos">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>Solicite su Turno Online</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Gestione sus turnos online de forma segura y confiable</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

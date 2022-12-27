@@ -1,0 +1,75 @@
+
+
+
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body row">
+  <div class="col-md-8 col-md-push-2" style="text-align: right">
+    <!--<img src="assets/img/logohp.jpg" alt="Hospital Privado Universitario de Córdoba" title="Hospital Privado Universitario de Córdoba" width="80" style="border-right: solid 1px #f1f1f1; padding-right: 10px; margin-right: 10px;" />-->
+    <img
+      src="assets/img/cdls.png"
+      alt="Club de la Salud"
+      title="Ingreso seguro a su cuenta del Club de la Salud"
+    />
+  </div>
+  <div class="col-md-8 col-md-push-2">
+    <form
+      [formGroup]="loginForm"
+      class="formIngreso"
+      action=""
+      id="iniciarSesionRec"
+    >
+      <div class="form-group">
+        <label for="loginEmail" class="control-label">E-mail:</label>
+        <input
+          formControlName="username"
+          type="email"
+          class="form-control input-lg"
+          name="usuario"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="loginPassword" class="control-label">Contraseña:</label>
+        <input
+          formControlName="password"
+          type="password"
+          required
+          class="form-control input-lg"
+          name="password"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+  <div class="LoginHCW">
+    <button
+      type="button"
+      class="btn btn-success2 enviarLoginHCW"
+      (click)="ingresar()"
+    >
+      <span
+        id="loadingIconIngreso"
+        class="loadingIcon glyphicon glyphicon-refresh glyphicon-refresh-animate"
+        style="display: none"
+      ></span>
+      Ingresar
+    </button>
+</div>

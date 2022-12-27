@@ -1,0 +1,244 @@
+<div class="container-fluid">
+  <div class="row contenidoTitle">
+      <div class="col">
+          <h1> Medicamentos </h1>
+      </div>
+  </div>
+  <div class='row'>
+      <div class='col'>
+          <div class='card'>
+              <div class='card-body'>
+                  <div class='row'>
+                      <div class="col">
+                          <div class="row componenteFiltroResultados">
+                              <div class="col-auto filtroResultados__label">
+                                  <p>Filtrar resultados</p>
+                              </div>
+                              <div class="col filtroResultados__switch">
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-pildora fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Activos / Vencidos</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-pildora fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Suspendidos</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                                  <div class='badge active'>
+                                      <a href="#">
+                                          <i class="fa fa-svg fa-pildora fa-fw badge__icon" aria-hidden="true"></i>
+                                          <p class="badge__label">Finalizados</p>
+                                          <i class="fa fa-fw badge__status" aria-hidden="true"></i>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <hr>
+                              </div>
+                          </div>
+                      </div>
+                      <div class='col-12 headTable'>
+                          <div class='row align-items-center'>
+                              <div class='col-auto'>
+                                  <div class='row componenteMostrarCantidadRegistros'>
+                                      <div class='col-auto control-label-between'>
+                                          <p>Mostrar</p>
+                                      </div>
+                                      <div class='col'>
+                                          <div class='form-group'>
+                                              <select class='form-control'>
+                                                  <option value='' selected=''>10</option>
+                                                  <option value=''>25</option>
+                                                  <option value=''>50</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class='col-auto control-label-between'>
+                                          <p>registros</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-auto col-lg-4 col-xl-3 ml-auto">
+                                  <div class='form-group componenteBusqueda'>
+                                      <div class='input-group'>
+                                          <div class='input-group-prepend'>
+                                              <span class='input-group-text'><i class='fa fa-search' aria-hidden='true'></i></span>
+                                          </div>
+                                          <input type='text' class='form-control' placeholder="Buscar">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="table-responsive">
+                              <table class='table tablaPrescripcionMedicamentos'>
+                                  <thead>
+                                      <tr>
+                                          <th class="tableOrderBy--active">Prescripción <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Renovación <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Nombre <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy">Trat. prolongado <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          <th class="tableOrderBy text-center" width="125">Estado <a href="#"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="estadoPrescripcion--activo">
+                                          <td>00-00-0000</td>
+                                          <td>00-00-0000</td>
+                                          <td>Losartán 50 mg</td>
+                                          <td>Si</td>
+                                          <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activo" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                      </tr>
+                                      <tr class="estadoPrescripcion--indefinido">
+                                          <td>00-00-0000</td>
+                                          <td>-</td>
+                                          <td>Allupurinol 100 mg</td>
+                                          <td>Si</td>
+                                          <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activo vencido" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                      </tr>
+                                      <tr class="estadoPrescripcion--inactivo">
+                                          <td>00-00-0000</td>
+                                          <td>00-00-0000</td>
+                                          <td>Furosemida 40 mg</td>
+                                          <td>No</td>
+                                          <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Suspendido" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                      </tr>
+                                      <tr class="estadoPrescripcion--finalizado">
+                                          <td>00-00-0000</td>
+                                          <td>00-00-0000</td>
+                                          <td>Levotiroxina 100 mcg</td>
+                                          <td>Si</td>
+                                          <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Finalizado" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                      </tr>
+                                      <tr class="estadoPrescripcion--activo">
+                                          <td>00-00-0000</td>
+                                          <td>00-00-0000</td>
+                                          <td>Espironolactona</td>
+                                          <td>No</td>
+                                          <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activo" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <nav class="componentePaginador">
+                              <ul class="pagination">
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Previous">
+                                          <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li class="page-item">
+                                      <a class="page-link" href="#" aria-label="Next">
+                                          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row contenidoCardsAccess">
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--estudios">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-laptop fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>¡Tus estudios al instante!</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Visualiza, compara y resguarda tus estudios de forma simple y segura.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--profesionales">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-user-md fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>Todas sus visitas al Hospital y centros</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Recuerde cuándo, donde, quien y de que servicio fue atendido.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-xl-4">
+          <div class="cardAccess--turnos">
+              <div class="cardAccess__header">
+                  <div class="row cardAccessHeader">
+                      <div class="col-auto cardAccessHeader__icon">
+                          <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col cardAccessHeader__title">
+                          <p>Solicite su Turno Online</p>
+                      </div>
+                      <div class="col-auto cardAccessHeader__chevron">
+                          <a href="#">
+                              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="cardAccess__body">
+                  <div class="row cardAccessBody">
+                      <div class="col cardAccessBody__content">
+                          <p>Gestione sus turnos online de forma segura y confiable</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
