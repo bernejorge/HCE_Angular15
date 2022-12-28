@@ -1,0 +1,6 @@
+@media print {
+    #mainHCEContent{
+        display: none !important;
+      }
+       
+}

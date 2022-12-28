@@ -1,0 +1,15 @@
+@media print {
+    .modal-header, .modal-body {
+     overflow: visible !important;
+     height: auto !important;
+     position:absolute;
+
+    }
+    p {
+        page-break-after: always;
+        page-break-inside: always;
+    }
+     button{
+         display:none !important;
+     }
+ }

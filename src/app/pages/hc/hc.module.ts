@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { MainComponent } from "./main/main.component";
 import { HcRoutingModule } from "./hc-routing.module";
 import { ResumenClinicoComponent } from "./resumen-clinico/resumen-clinico.component";
@@ -13,7 +13,18 @@ import { MedicamentosComponent } from "./medicamentos/medicamentos.component";
 import { InternacionesComponent } from "./internaciones/internaciones.component";
 import { SpinnerModule } from "../spinner/spinner.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ResultadosEstudiosModalComponent } from "./resultados-estudios-modal/resultados-estudios-modal.component";
+
+import { ModalComponent } from './resultados-estudios-modales/modal/modal.component';
+import { EstudiosLabComponent } from './resultados-estudios-modales/estudios-lab/estudios-lab.component';
+import { InternacionModalComponent } from './internaciones/internacion-modal/internacion-modal.component';
+import { CardMedicamentosComponent } from './footer/card-medicamentos/card-medicamentos.component';
+import { CardProfesionalesComponent } from './footer/card-profesionales/card-profesionales.component';
+import { CardEstudiosComponent } from './footer/card-estudios/card-estudios.component';
+import { ChartModule } from "angular-highcharts";
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import { EstudiosImgenComponent } from './resultados-estudios-modales/estudios-imagen/estudios-imgen.component';
+import { OrderModule } from "ngx-order-pipe";
 
 @NgModule({
   imports: [
@@ -22,7 +33,11 @@ import { ResultadosEstudiosModalComponent } from "./resultados-estudios-modal/re
     FormsModule,
     HcRoutingModule,
     SpinnerModule,
+    ChartModule,
+    OrderModule, 
+    NgxPaginationModule
   ],
+  providers: [DatePipe],
   declarations: [
     MainComponent,
     ResumenClinicoComponent,
@@ -34,7 +49,16 @@ import { ResultadosEstudiosModalComponent } from "./resultados-estudios-modal/re
     ResultadosEstudiosComponent,
     MedicamentosComponent,
     InternacionesComponent,
-    ResultadosEstudiosModalComponent,
+    ModalComponent,
+    EstudiosLabComponent,
+    InternacionModalComponent,
+    CardMedicamentosComponent,
+    CardProfesionalesComponent,
+    CardEstudiosComponent,
+    EstudiosImgenComponent,
+    
   ],
+  entryComponents:[ ModalComponent, InternacionModalComponent],
+  exports:[]
 })
 export class HcModule {}

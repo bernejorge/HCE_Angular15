@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="panel-body table-responsive no-border">
+    <span> </span><span> </span><span> </span><span> </span><span> </span
+    ><span> </span><span> </span><span> </span><span> </span>
+    <table class="table table-hover table-striped table-condensed" *ngIf="estudio.Laboratorio?.length">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Valor</th>
+          <th>Unidad</th>
+        </tr>
+      </thead>
+
+      <tbody >
+        <tr class="estudios_lab" *ngFor="let l of estudio.Laboratorio">
+          <td style="white-space: pre-wrap">{{l.Descripcion}}</td>
+          <td style="white-space: pre-wrap">{{l.Valor}}</td>
+          <td style="white-space: pre-wrap">{{l.Unidad}}/l</td>          
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>

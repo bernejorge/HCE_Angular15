@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PersonasService } from '../../../services/personas.service';
 
@@ -9,22 +10,24 @@ import { PersonasService } from '../../../services/personas.service';
 })
 export class MainComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
+  browserRefresh!: boolean;
 
   constructor(private personaSrv: PersonasService) {
 
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.subscription.unsubscribe();
   }
 
   ngOnInit() {
-    this.personaSrv.obtenerRelaciones().then(
-      () => {
-        this.subscription = this.personaSrv.$personaSeleccionadaObs
-          .subscribe(person => {
-            console.log("Persona Seleccionada = " + person!.NombreCompleto!);
-          });
+
+    this.subscription = this.personaSrv.$personaSeleccionadaObs
+      .subscribe(person => {
+        if (person) { console.log("Persona Seleccionada = " + person.NombreCompleto);}
       });
+
+
+      
 
   }
 

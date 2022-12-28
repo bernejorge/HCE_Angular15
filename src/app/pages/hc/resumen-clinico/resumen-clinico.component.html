@@ -1,3 +1,353 @@
-<p>
-  resumen-clinico works!
-</p>
+
+ 
+<div class="row">
+  <div class="col-lg-6">
+    <div [chart]="chart"></div>
+  </div>
+</div>
+ 
+<section id="contenido">
+  <!-- Analizar si conviene meter el title siempre en el content de cada pantalla o junto al a vista parcial del header  -->
+  <div class="container-fluid">
+      <div class="row contenidoTitle">
+          <div class="col">
+              <h1> Resumen clínico </h1>
+          </div>
+      </div>
+      <!-- <div class="row contenidoAlerts">
+          <div class="col">
+              <div class="alertContainer--warning container-fluid">
+                  <div class="row alertRow">
+                      <div class="col-auto alert__icon">
+                          <i class="fa fa-fw" aria-hidden="true"></i>
+                      </div>
+                      <div class="col alert__message">
+                          <p>Maria Cecilia Mantovani tiene alergias registradas en su historia clínica.</p>
+                          <span class="badge badge-pill">Alegia a la ranitidina</span>
+                          <span class="badge badge-pill">Alergia a la picadura de abeja</span>
+                      </div>
+                      <div class="col-auto alert__close">
+                          <a href="#">
+                              <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+      <div class="row contenidoCards">
+          <div class="col-12 col-lg-6 d-none">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                              <h3>Gráficos BioMédicos</h3>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col">
+                              <p class="m-0 text-center">Chartjs pendiente de integrar</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                              <h3>Signos Vitales</h3>
+                          </div>
+                          <div class="col-auto">
+                              <!-- <button type="button" class="btn btn-icon btn-sm"><i class="fa fa-chevron-right" aria-hidden="true"></i></button> -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-12">
+                            <div [chart]="chart"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                              <h3>Internaciones</h3>
+                          </div>
+                          <div class="col-auto">
+                              <!-- <button type="button" class="btn btn-icon btn-sm"><i class="fa fa-chevron-right" aria-hidden="true"></i></button> -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <thead>
+                                          <tr>
+                                              <th>Motivo</th>
+                                              <th>Ingreso</th>
+                                              <th>Egreso</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngFor="let e of episodios">
+                                          <tr>
+                                              <td>{{e.MotivoInternacion}}</td>
+                                              <td>{{e.FechaIngreso | date:'dd/MM/yyyy'}}</td>
+                                              <td>{{validateDate(e.FechaDeAltaAdm) | date:'dd/MM/yyyy'}}</td>
+                                          </tr>
+                                          
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                              <h3>Resultados de estudios</h3>
+                          </div>
+                          <div class="col-auto">
+                              <!-- <button type="button" class="btn btn-icon btn-sm"><i class="fa fa-chevron-right" aria-hidden="true"></i></button> -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <thead>
+                                          <tr>
+                                              <th>Fecha</th>
+                                              <th>Estudio realizado</th>
+                                              <th class="text-center">Informe</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngFor="let i of informes">
+                                          <tr>
+                                            <td>{{i.FechaRealizacion | date:'dd/MM/yyyy' }}</td>
+                                            <td>{{i.Estudio}}</td>
+                                            <td style="cursor: pointer;" class="text-center"(click)="openModal(i)" ><i class= "{{i.getClass()}} fa-fw" aria-hidden="true"></i></td>
+                                          </tr>
+                                          <!-- <tr>
+                                              <td>00-00-0000</td>
+                                              <td>LAB - Quimica clinica (sangre)</td>
+                                              <td class="text-center"><a href="#" data-toggle="modal" data-target="#modalEstudios"><i class="fa fa-flask fa-fw" aria-hidden="true"></i></a></td>
+                                          </tr>
+                                          <tr>
+                                              <td>00-00-0000</td>
+                                              <td>LAB - Hemograma</td>
+                                              <td class="text-center"><a href="#" data-toggle="modal" data-target="#modalEstudios"><i class="fa fa-flask fa-fw" aria-hidden="true"></i></a></td>
+                                          </tr>
+                                          <tr>
+                                              <td>00-00-0000</td>
+                                              <td>RX - Ecografía abdominal</td>
+                                              <td class="text-center"><a href="#" data-toggle="modal" data-target="#modalEstudios"><i class="fa fa-camera fa-fw" aria-hidden="true"></i></a></td>
+                                          </tr>
+                                          <tr>
+                                              <td>00-00-0000</td>
+                                              <td>Biopsia de riñon</td>
+                                              <td class="text-center"><a href="#" data-toggle="modal" data-target="#modalEstudios"><i class="fa fa-medkit fa-fw" aria-hidden="true"></i></a></td>
+                                          </tr> -->
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col">
+                              <h3>Medicamentos</h3>
+                          </div>
+                          <div class="col-auto">
+                              <!-- <button type="button" class="btn btn-icon btn-sm"><i class="fa fa-chevron-right" aria-hidden="true"></i></button> -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="table-responsive">
+                                  <table class="table tablaPrescripcionMedicamentos">
+                                      <thead>
+                                          <tr>
+                                              <th>Prescripción</th>
+                                              <th>Renovación</th>
+                                              <th>Nombre</th>
+                                              <th class="text-center">Estado</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngFor="let p of prescripciones">
+                                          <tr class="{{p.obtenerClass()}}">
+                                            <td>{{p.FechaMostrar | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{p.Fecha | date:'dd/MM/yyyy'}}</td>
+                                            <td>{{p.Nombre}}</td>
+                                            <td class="text-center"><i aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{p.EstadoPrescripcion}}" class="fa fa-svg fa-pildora fa-fw"></i></td>
+                                          </tr>
+                                          <!-- <tr class="estadoPrescripcion--indefinido">
+                                              <td>00-00-0000</td>
+                                              <td>-</td>
+                                              <td>Allupurinol 100 mg</td>
+                                              <td class="text-center"><i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activo vencido"></i></td>
+                                          </tr>
+                                          <tr class="estadoPrescripcion--inactivo">
+                                              <td>00-00-0000</td>
+                                              <td>00-00-0000</td>
+                                              <td>Furosemida 40 mg</td>
+                                              <td class="text-center"><i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Suspendido"></i></td>
+                                          </tr>
+                                          <tr class="estadoPrescripcion--finalizado">
+                                              <td>00-00-0000</td>
+                                              <td>00-00-0000</td>
+                                              <td>Levotiroxina 100 mcg</td>
+                                              <td class="text-center"><i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Finalizado"></i></td>
+                                          </tr>
+                                          <tr class="estadoPrescripcion--activo">
+                                              <td>00-00-0000</td>
+                                              <td>00-00-0000</td>
+                                              <td>Espironolactona</td>
+                                              <td class="text-center"><i class="fa fa-svg fa-pildora fa-fw" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activo"></i></td>
+                                          </tr> -->
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalEstudios" tabindex="-1" aria-labelledby="modalEstudiosLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div class="modal-header__title">
+                      <h5 class="modal-title" id="modalEstudiosLabel">LAB - Análisis de orina</h5>
+                  </div>
+              </div>
+              <div class="modal-body">
+                  <div class="row box-secondary justify-content-between">
+                      <div class="col-auto">
+                          <div class="form-group row">
+                              <label class="control-label col-auto">Fecha informe:</label>
+                              <p class="form-control-static input-read col-auto">00/00/0000</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-group row">
+                              <label class="control-label col-auto">Nombre:</label>
+                              <p class="form-control-static input-read col-auto">Mantovani, Maria Cecilia</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-group row">
+                              <label class="control-label col-auto">Sexo:</label>
+                              <p class="form-control-static input-read col-auto">Femenino</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-group row">
+                              <label class="control-label col-auto">Edad:</label>
+                              <p class="form-control-static input-read col-auto">00 años</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>Descripción</th>
+                                  <th>Valor</th>
+                                  <th>Valor normal</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>DENSIDAD</td>
+                                  <td>1018</td>
+                                  <td>1005 - 1030</td>
+                              </tr>
+                              <tr>
+                                  <td>REACCIÓN ph.</td>
+                                  <td>6.0</td>
+                                  <td>5.0 - 8.0</td>
+                              </tr>
+                              <tr>
+                                  <td>PROTEÍNA</td>
+                                  <td>CONTIENE +</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>HEMOGLOBINA</td>
+                                  <td>CONTIENE +</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>PIGMENTOS BILIARES</td>
+                                  <td>NO CONTIENE</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>GLUCOSA</td>
+                                  <td>NO CONTIENE</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>ACETONA</td>
+                                  <td>NO CONTIENE</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>UROBILINA</td>
+                                  <td>NO CONTIENE</td>
+                                  <td>NO CONTIENE</td>
+                              </tr>
+                              <tr>
+                                  <td>EXAMEN MIC. SEDIMENTO</td>
+                                  <td>-</td>
+                                  <td>-</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <div class="modal-footer__print">
+                      <button type="button" class="btn btn-secondary btn-imprimir" data-dismiss="modal" aria-label="Close"> Imprimir <i class="fa fa-print fa-fw" aria-hidden="true"></i>
+                      </button>
+                      <button type="button" class="btn btn-secondary btn-imprimir-mobile" data-dismiss="modal" aria-label="Close"> <i class="fa fa-print fa-fw" aria-hidden="true"></i>
+                      </button>
+                  </div>
+                  <div class="modal-footer__close">
+                      <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

@@ -26,7 +26,7 @@ export interface InformeIterface extends Base{
     Sexo: string;
     Edad: string;
     Laboratorio: Laboratorio[];
-    Imagen: Imagen[];
+    Imagen?: Imagen[];
     Otro: Laboratorio[];
     getClass(): string;
 }
@@ -78,7 +78,7 @@ export class Informe implements InformeIterface {
     Sexo!: string;
     Edad!: string;
     Laboratorio!: Laboratorio[];
-    Imagen!: Imagen[];
+    Imagen?: Imagen[];
     Otro!: Laboratorio[];
 
     getClass(): string {

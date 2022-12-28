@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 style="margin-inline-start: auto" class="modal-title">Registrarse</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body row">
+  <div class="col-md-8 col-md-push-2" style="text-align: right">
+    <p>
+      Si usted es paciente de nuestra institución, es necesario generar su
+      usuario con la dirección de correo electrónico con la que esta
+      empadronado.
+    </p>
+    <p>Si no lo recuerda, llame al 030345666</p>
+  </div>
+  <div class="col-md-8 col-md-push-2">
+    <form [formGroup]="resgistrationForm" class="formIngreso" action="" id="iniciarSesionRec">
+      <div class="form-group">
+        <label for="loginEmail" class="control-label">Nº de documento:</label>
+        <input formControlName="docnumber" type="number" class="form-control input-lg" name="docnumber" required />
+      </div>
+      <div class="form-group">
+        <label for="loginPassword" class="control-label">Fecha Nacimiento:</label>
+        <input formControlName="nac" type="date" required class="form-control input-lg" name="nac" />
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">
+    Close
+  </button>
+  <div class="LoginHCW">
+    <button type="button" class="btn btn-success2 enviarLoginHCW" (click)="regitrarse()">
+      <span id="loadingIconIngreso" class="loadingIcon glyphicon glyphicon-refresh glyphicon-refresh-animate"
+        style="display: none"></span>
+      Ingresar
+    </button>
+  </div>
+</div>

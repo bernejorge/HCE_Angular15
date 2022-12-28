@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modalEstudiosHP">
+    {{titulo | uppercase }}
+  </h4>
+  <button type="button" class="close noprint" aria-label="Cerrar" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <!-- <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button> -->
+</div>
+<div class="modal-body" >
+  <div *ngIf="estudio !== undefined" class="row datosPersonales">
+    <div class="col-md-6 col-xs-12 nombrePersona"><b>Nombre:</b>{{estudio.NombrePersona}}</div>
+    <div class="col-md-3 col-xs-6"><b>Sexo:</b> {{estudio.Sexo}}</div>
+    <div class="col-md-3 col-xs-6"><b>Edad:</b> {{estudio.Edad}}</div>
+    <div class="col-md-6 col-xs-12 nombrePersona"><b>Informe:</b> {{estudio.Estudio}}</div>
+    <div class="col-md-6 col-xs-12"><b>Fecha:</b> {{estudio.FechaRealizacion | date: 'dd/MM/yyyy'}}</div>
+  </div>
+  <div *ngIf="estudio == undefined" class="row">
+    <div class="col-md-6 col-xs-12"><b>No hay resultados disponible para el Estudio.</b></div>
+  </div>
+
+  <ng-container *ngIf="$any(estudio?.Laboratorio)?.length>0">
+    <app-estudios-lab id="lab" [estudio]="estudio"></app-estudios-lab>
+  </ng-container>
+
+  <ng-container *ngIf="$any(estudio?.Imagen)?.length>0" >
+    <app-estudios-imgen  [estudio]="estudio" (miTitulo)="addTituloHijo($event)"></app-estudios-imgen>
+  </ng-container>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="imprimir()" aria-label="Close"> Imprimir <i class="fa fa-print fa-fw" aria-hidden="true"></i>
+  </button>
+  <!-- <button class="btn btn-outline-dark" id="printPageButton" (click)="imprimir()">Imprimir</button>  -->
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">
+    Cerrar
+  </button>
+</div>

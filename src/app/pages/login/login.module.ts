@@ -9,7 +9,10 @@ import { SpinnerModule } from '../spinner/spinner.module';
 
 
 const appRoutes: Routes = [
-    {path: 'login', component: LoginComponent}
+  {
+    path: '',
+    component: LoginComponent
+  }
 
 ];
 @NgModule({

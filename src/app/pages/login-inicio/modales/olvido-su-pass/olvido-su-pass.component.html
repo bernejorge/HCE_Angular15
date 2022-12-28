@@ -1,0 +1,17 @@
+
+  <div class="modal-header">
+    <h5 class="modal-title"><i class="fa fa--advertencia fa-2x fa-exclamation-circle pr-2"></i><span>Importante</span></h5>
+    
+    <button type="button" class="close" aria-label="Cerrar" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+
+<div class="modal-body">
+    <p>Por el momento únicamente podrá regenerar su contraseña desde Turnos Online, ingresando <a style="cursor: pointer;" [href]="url" target="_blank">aquí.</a> </p>
+    <p>Recuerde que su contraseña será la misma para ambos sistemas.</p>
+    <button type="button" class="btn btn-primary btn-block mt-3" (click)="activeModal.close('click')">Aceptar</button>
+    <!-- <small class="form-text text-muted d-block"><a href="#">¿No reconoce ese email?</a></small> -->
+</div>
+
+

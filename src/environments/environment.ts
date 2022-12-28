@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://innova.1704.dev.tipsalud.local/Asistencial/LogisticaDePaciente/IntegracionPortalApi'
+  API_URL: 'http://innova.1704.dev.tipsalud.local/Asistencial/LogisticaDePaciente/IntegracionPortalApi',
+  URL_TO_PASS : 'http://appinnovadev.tipsalud.local:8015/TurnosOnline/login.html#forgot'
 };

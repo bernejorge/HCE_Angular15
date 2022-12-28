@@ -19,7 +19,29 @@ import { SpinnerModule } from './pages/spinner/spinner.module';
 import { SpinnerInterceptor } from './iterceptors/spinner-interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SesionPermisosGuard } from './guards/sesion-permisos.guard';
+import { ValidarRegistroComponent } from './pages/validar-registro/validar-registro.component';
+
+
+import { ErrorCatchingInterceptor } from './iterceptors/error-catching.interceptor';
+import { LoginInicioComponent } from './pages/login-inicio/login-inicio.component';
+
+import { RegistroExitosoComponent } from './pages/login-inicio/modales/registro-exitoso/registro-exitoso.component';
+import { RegistrarseComponent } from './pages/login-inicio/modales/registrarse/registrarse.component';
+import { RecuperarClaveComponent } from './pages/login-inicio/modales/recuperar-clave/recuperar-clave.component';
+import { GenerarPasswordComponent } from './pages/generar-password/generar-password.component';
+import { TerminosCondicionesComponent } from './pages/login-inicio/modales/terminos-condiciones/terminos-condiciones.component';
+import { OlvidoSuPassComponent } from './pages/login-inicio/modales/olvido-su-pass/olvido-su-pass.component';
 import { AppRoutingModule } from './app-routing.module';
+
+// const appRoutes: Routes = [
+//   { path: '', redirectTo : 'home', pathMatch: "full" },
+//   { path:'home', component: LoginInicioComponent },
+//   { path: 'login',  loadChildren:"./pages/login/login.module" },
+//   { path: 'validar-registro', component: ValidarRegistroComponent},
+//   {path: 'generar-password', component: GenerarPasswordComponent},
+//   { path: 'main', loadChildren: "./pages/hc/hc.module#HcModule", canActivate:[SesionPermisosGuard]}
+// ];
 
 const appRoutes: Routes = [
   { path: '', redirectTo : 'home', pathMatch: "full" },
@@ -30,12 +52,20 @@ const appRoutes: Routes = [
   { path: 'main', loadChildren:()=>import('./pages/hc/hc.module').then(m=> m.HcModule)}
  
 ];
-
 @NgModule({
   declarations: [
     AppComponent,
-
+    ValidarRegistroComponent,
+    LoginInicioComponent,
+    RegistrarseComponent,
+    RegistroExitosoComponent,
+    RecuperarClaveComponent,
+    GenerarPasswordComponent,
+    TerminosCondicionesComponent,
+    OlvidoSuPassComponent,
+    
   ],
+  entryComponents:[ RegistrarseComponent, RegistroExitosoComponent, TerminosCondicionesComponent, OlvidoSuPassComponent],
   imports: [ 
     AppRoutingModule,
     BrowserModule,
@@ -46,9 +76,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     HcModule,
     CoreModule,
-    SpinnerModule,
-    
-
+    SpinnerModule,  
+    NgbModule  
   ],
   exports: [SpinnerComponent],
   providers: [
@@ -65,6 +94,11 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true,
     }
 
   ],

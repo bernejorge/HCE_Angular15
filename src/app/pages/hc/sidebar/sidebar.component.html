@@ -4,13 +4,14 @@
       <a href="index.html" class="">
         <picture>
           <source
-            srcset="../../../../assets/client/HospitalPrivado/isologotypeNegative.webp"
+            
+            srcset = "../../../../assets/client/TIPS/TIPS logotipo negativo con slogan.ai"           
             type="image/webp"
             class="img-fluid"
           />
           <img
-            src="../../../../assets/client/HospitalPrivado/isologotypeNegative.png"
-            
+          src="../../../../assets/client/TIPS/TIPS logotipo negativo con slogan.jpg"
+                      
             alt="Logotipo"
             class="img-fluid"
           />
@@ -21,12 +22,12 @@
       <a href="index.html" class="d-none d-lg-flex">
         <picture>
           <source
-            srcset="../../../../assets/client/HospitalPrivado/isotypeNegative.webp"
+            srcset="../../../../assets/client/TIPS/TIPS logotipo negativo.jpg" 
             type="image/webp"
             class="img-fluid"
           />
           <img
-            src="../../../../assets/client/HospitalPrivado/isotypeNegative.png"
+            src="../../../../assets/client/TIPS/TIPS logotipo negativo.jpg"  
             alt="Logotipo"
             class="img-fluid"
           />
@@ -36,6 +37,7 @@
     <button
       id="menuCollapseButton2"
       class="btn btn-icon d-lg-none btn-close-mobile"
+      (click)="onMenuClick()"
     >
       <i class="fa fa-times" aria-hidden="true"></i>
     </button>
@@ -80,7 +82,7 @@
           </a>
         </li>
         <li class="mainHCESidebarList__button" [ngClass]="clicked === 6 ? 'active ' : ''" (click)="select(6)">
-          <a type="button" class="btn btn-accent">
+          <a type="button" class="btn btn-accent" (click)="goToLink('http://appinnovadev.tipsalud.local:8015/TurnosOnline/login.html')">
             Turnos online
             <i
               class="fa fa-chevron-right fa-fw"

@@ -1,0 +1,50 @@
+.modal-title {
+    width: 100%;
+    text-align: center;
+} 
+.nombrePersona{
+    margin-bottom: 10px;
+}
+
+@media print {
+    body * {
+        display:none !important;
+      }
+    #noprint{
+        display:none !important;
+    }
+    .modal,
+    .modal * {
+        overflow: visible !important;
+    }
+    .modal {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+    .modal-dialog {
+        width: 100% !important;
+        margin: 0;
+    }
+    .modal-backdrop {
+        background-color: white;
+        opacity: 1 !important;
+    }
+    .modal-body{
+        overflow: visible !important;
+       
+    }
+    table{
+        overflow: visible !important;
+        border: solid;
+    }
+    #lab{
+        overflow: visible !important;
+    }
+    button{
+        display:none !important;
+    }
+    .mainHCESidebarList__container{
+        display:none !important;
+    }
+}

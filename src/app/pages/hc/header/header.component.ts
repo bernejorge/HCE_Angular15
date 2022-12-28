@@ -12,8 +12,8 @@ import { PersonasService } from '../../../services/personas.service';
 export class HeaderComponent implements OnInit, OnDestroy{
 
   private suscripcion: Subscription;
-   personas: any[] | undefined;
-  public presonaSeleccionada : Persona | undefined;
+  public personas!: any[];
+  public presonaSeleccionada!: Persona;
   constructor(private personSrv : PersonasService, private menuSrv : MenuService) { 
     this.suscripcion = this.personSrv.$relacionesObs
     .subscribe({

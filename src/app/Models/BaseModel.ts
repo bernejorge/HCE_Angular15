@@ -14,7 +14,9 @@ export abstract class Base {
         }
     }
 
-    static validateDate(d:string) {
+    static validateDate(d:string |null) {
+        if(d == null) return "";
+        
         if (d ==="0001-01-01T00:00:00"){
           return "";
         }else{

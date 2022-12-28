@@ -44,21 +44,20 @@ export class LoginComponent implements OnInit {
 	ingresar() {
 		//definicion del observador
 		const LoginObserver={
-			next:(x: any)=> {
+			next:(x:any)=> {
 				console.log(x);
 				this.activeModal.close();
 				this.router.navigate(['/main']);
 			},
-			error:(x: { message: string; })=>{
+			error:(x:any)=>{
 				console.error(x);
 				window.alert("Error: " + x.message);				 
 			}
 			
 		}
 		console.log(this.loginForm.controls.username.value);
-		const userName = this.loginForm.controls.username.value ? this.loginForm.controls.username.value : "";
-		const password = this.loginForm.controls.password.value ? this.loginForm.controls.password.value:"";
-		this.loginSrv.login(userName, password)
+		this.loginSrv.login(this.loginForm.controls.username.value, 
+							this.loginForm.controls.password.value)
 			.subscribe(LoginObserver);
 		this.mymodalIsOpen=false;
 	}

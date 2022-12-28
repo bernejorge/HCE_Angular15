@@ -1,3 +1,237 @@
-<p>
-  internaciones works!
-</p>
+<section id="contenido">
+  <div class="container-fluid">
+      <div class="row contenidoTitle">
+          <div class="col">
+              <h1> Internaciones </h1>
+          </div>
+      </div>
+      <div class='row'>
+          <div class='col'>
+              <div class='card'>
+                  <div class='card-body'>
+                      <div class='row'>
+                          <div class="col">
+                              <!-- <div class="row componenteFiltroResultados">
+                                  <div class="col-auto filtroResultados__label">
+                                      <p>Filtrar resultados: </p>
+                                  </div>
+                                  <div class="col-auto filtroResultados__switch">
+                                      <div class="switch__container">
+                                          <p class="switch__label">Con carta de alta / Epicrisis</p>
+                                          <div class='switch active'>
+                                              <a href="#">
+                                                  <div class="switch__status"></div>
+                                              </a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto filtroResultados__switch">
+                                      <div class="switch__container">
+                                          <p class="switch__label">Con carta de alta / Epicrisis</p>
+                                          <div class='switch'>
+                                              <a href="#">
+                                                  <div class="switch__status"></div>
+                                              </a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-12">
+                                      <hr>
+                                  </div>
+                              </div> -->
+                          </div>
+                          <div class='col-12 headTable'>
+                              <div class='row align-items-center'>
+                                  <div class='col-auto'>
+                                      <div class='row componenteMostrarCantidadRegistros'>
+                                          <div class='col-auto control-label-between'>
+                                              <p>Mostrar</p>
+                                          </div>
+                                          <div class='col'>
+                                              <div class='form-group'>
+                                                <select class="form-control" type="number" [(ngModel)]="cantidad">
+                                                    <option [value]="10" selected="">10</option>
+                                                    <option [value]="25">25</option>
+                                                    <option [value]="50">50</option>
+                                                  </select> 
+                                              </div>
+                                          </div>
+                                          <div class='col-auto control-label-between'>
+                                              <p>registros</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto col-lg-4 col-xl-3 ml-auto">
+                                      <div class='form-group componenteBusqueda'>
+                                          <div class='input-group'>
+                                              <div class='input-group-prepend'>
+                                                  <span class='input-group-text'><i class='fa fa-search' aria-hidden='true'></i></span>
+                                              </div>
+                                              <input type='text' [(ngModel)] = "buscarTxt" (ngModelChange)="buscar()" class='form-control' placeholder="Buscar">
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              <div class="table-responsive">
+                                  <table class='table'>
+                                      <thead>
+                                          <tr>
+                                              <th (click)="sort('MotivoInternacion')"  class="tableOrderBy--active">Motivo de internación <a style="cursor: pointer;"><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                              <th (click)="sort('FechaIngreso')" class="tableOrderBy" width="125">Ingreso <a ><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                              <th class="tableOrderBy" width="125">Egreso <a ><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                              <th (click)="sort('NombreServicio')" class="tableOrderBy" width="250">Servicio <a ><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                              <th class="tableOrderBy text-center" width="75">Ver <a ><i class="fa fa-sort-amount-asc fa-fw" aria-hidden="true"></i></a></th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngFor="let e of episodiosFiltrados | orderBy: key: reverse | paginate: {itemsPerPage:cantidad, currentPage:p};">
+                                          <tr>
+                                              <td>{{e.MotivoInternacion}}</td>
+                                              <td>{{e.FechaIngreso | date:'dd/MM/yyyy'}}</td>
+                                              <td>{{validateDate(e.FechaDeAltaAdm) | date:'dd/MM/yyyy'}}</td>
+                                              <td>{{e.NombreServicio}}</td>
+                                              <td class="text-center"><i *ngIf="e.TieneEpicrisis" (click)="openModal(e)" class="fa fa-file-text-o fa-fw" aria-hidden="true"></i></td>
+                                          </tr>
+                                          
+                                      </tbody>
+                                      <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Proximo" (pageChange)="p = $event" ></pagination-controls>
+                                  </table>
+                              </div>
+                          </div>
+                          <!-- <div class="col">
+                              <nav class="componentePaginador">
+                                  <ul class="pagination">
+                                      <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Previous">
+                                              <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Previous">
+                                              <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Next">
+                                              <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                      <li class="page-item">
+                                          <a class="page-link" href="#" aria-label="Next">
+                                              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </nav>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+  <!-- Modal -->
+  <div class="modal fade report-modal" id="modalInternaciones" tabindex="-1" aria-labelledby="modalInternacionesLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div class="modal-header__title">
+                      <h5 class="modal-title" id="modalInternacionesLabel">Carta de alta de Síndrome confusional</h5>
+                  </div>
+                  <div class="modal-header__print">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"> Imprimir <i class="fa fa-print fa-fw" aria-hidden="true"></i>
+                      </button>
+                  </div>
+                  <div class="modal-header__close">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+              </div>
+              <div class="modal-body">
+                  <div class="row box-secondary justify-content-between">
+                      <div class="col-auto">
+                          <div class='form-group row'>
+                              <label class='control-label col-auto'>Fecha informe:</label>
+                              <p class='form-control-static input-read col-auto'>21-05-2019</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class='form-group row'>
+                              <label class='control-label col-auto'>Nombre:</label>
+                              <p class='form-control-static input-read col-auto'>Mantovani, Maria Cecilia</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class='form-group row'>
+                              <label class='control-label col-auto'>Sexo:</label>
+                              <p class='form-control-static input-read col-auto'>Femenino</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class='form-group row'>
+                              <label class='control-label col-auto'>Edad:</label>
+                              <p class='form-control-static input-read col-auto'>37 años</p>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <div class='form-group row'>
+                              <label class='control-label col-auto'>Informe:</label>
+                              <p class='form-control-static input-read col-auto'>Síndrome confusional</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row report-list">
+                      <div class="col-12 report-list__title">
+                          <h6>Diagnóstico principal</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <p>Crisis isquémica transitoria</p>
+                      </div>
+                      <div class="col-12 report-list__title">
+                          <h6>Comorbilidades</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <ul>
+                              <li> Síndrome de cushing </li>
+                              <li>Fibrosis pulmonar</li>
+                          </ul>
+                      </div>
+                      <div class="col-12 report-list__title">
+                          <h6>Comorbilidades</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <p>Paciente sexo masculino, 31 años de edad, con antecedentes anteriormente mencionados, ingresó a unidad cerrada el día 21/11/19 derivado de guardia externa con sospecha diagnóstica de accidente isquémico transitorio. Paciente consultó por presentar disminución de agudeza visual con hemianopsia temporal derecha, junto con parestesia facio braquial derecha. Familiar refirió leve bradipsiquia. Fue evaluado por servicio de neurología, y se realizaron los siguientes estudios:</p>
+                      </div>
+                      <div class="col-12 report-list__title">
+                          <h6>Comorbilidades</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <p>Paciente sexo masculino, 31 años de edad, con antecedentes anteriormente mencionados, ingresó a unidad cerrada el día 21/11/19 derivado de guardia externa con sospecha diagnóstica de accidente isquémico transitorio. Paciente consultó por presentar disminución de agudeza visual con hemianopsia temporal derecha, junto con parestesia facio braquial derecha. Familiar refirió leve bradipsiquia. Fue evaluado por servicio de neurología, y se realizaron los siguientes estudios:</p>
+                      </div>
+                      <div class="col-12 report-list__title">
+                          <h6>Comorbilidades</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <p>Paciente sexo masculino, 31 años de edad, con antecedentes anteriormente mencionados, ingresó a unidad cerrada el día 21/11/19 derivado de guardia externa con sospecha diagnóstica de accidente isquémico transitorio. Paciente consultó por presentar disminución de agudeza visual con hemianopsia temporal derecha, junto con parestesia facio braquial derecha. Familiar refirió leve bradipsiquia. Fue evaluado por servicio de neurología, y se realizaron los siguientes estudios:</p>
+                      </div>
+                      <div class="col-12 report-list__title">
+                          <h6>Comorbilidades</h6>
+                      </div>
+                      <div class="col-12 report-list__description">
+                          <p>Paciente sexo masculino, 31 años de edad, con antecedentes anteriormente mencionados, ingresó a unidad cerrada el día 21/11/19 derivado de guardia externa con sospecha diagnóstica de accidente isquémico transitorio. Paciente consultó por presentar disminución de agudeza visual con hemianopsia temporal derecha, junto con parestesia facio braquial derecha. Familiar refirió leve bradipsiquia. Fue evaluado por servicio de neurología, y se realizaron los siguientes estudios:</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

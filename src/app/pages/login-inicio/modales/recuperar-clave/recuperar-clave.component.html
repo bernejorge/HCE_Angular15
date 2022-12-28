@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">Recuperar contraseña</h4>
+</div>
+<div class="modal-body row">
+  <div class="col-md-10 col-md-push-1" style="text-align: right; margin-bottom: 20px;">
+    <!--<img src="assets/img/logohp.jpg" alt="Hospital Privado Universitario de Córdoba" title="Hospital Privado Universitario de Córdoba" width="80" style="border-right: solid 1px #f1f1f1; padding-right: 10px; margin-right: 10px;" />-->
+    <img src="assets/img/cdls.png" alt="Club de la Salud" title="Ingreso seguro a su cuenta del Club de la Salud" />
+  </div>
+  <div class="col-md-10 col-md-push-1">
+    <p>
+      <b>¿Has olvidado tu contraseña?</b>
+    </p>
+    <p>Por favor ingresa el e-mail con el cual registraste la cuenta y recibiras un link para generar una nueva
+      contraseña.</p>
+    <form id="frmSolicitudContrasenia" novalidate>
+      <input type="email" class="form-control input-lg" name="recuperar-email" required id="recuperar-email" value=""
+        placeholder="e-mail a recuperar" style="margin-bottom: 10px; margin-top: 20px;" />
+      <div class="pull-center">
+        <!-- <re-captcha
+                          (captchaResponse)="handleCorrectCaptcha($event)"
+                          site_key="6LfLPAATAAAAAONP-7kPKnAKUvxhdCWeden_mHMZ"></re-captcha> -->
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="LoginHCW">
+    <button type="button" class="btn btn-success2" (click)="recuperarClave()"><span id="loadingIconClave"
+        class="loadingIcon glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;"></span>
+      Recuperar clave</button>
+  </div>

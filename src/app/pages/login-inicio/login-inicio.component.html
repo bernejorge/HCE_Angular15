@@ -1,0 +1,115 @@
+<section id="contenido">
+    <section class="HCOnline home-login">
+        <main class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 formAcceso formAcceso__izquierda d-flex justify-content-center align-items-center">
+                    <div class="inicio-sesion">
+                        <div class="logo">
+                            <picture>
+                                <img src="./assets/client/TIPS/TIPS logotipo positivo con slogan.jpg"
+                                    alt="Logotipo" style="width: 100%" class="w-100" />
+                                <!-- <img src="../../../assets/client/HospitalPrivado/isologotypeMonotone.png" alt="Logotipo" class="w-50"> -->
+                            </picture>
+                        </div>
+                        <h3>Iniciar sesión</h3>
+                        <form [formGroup]="loginForm">
+                            <div class="form-group">
+                                <label for="login">Correo electrónico</label>
+                                <input type="email" formControlName="username" class="form-control"
+                                    [ngClass]="!loginForm.controls['username'].valid && loginForm.controls['username'].dirty ? 'is-invalid' : ''" id="mail"
+                                    aria-describedby="emailHelp" required="" />
+                                <small class="form-text a-text"><a href="#" data-toggle="modal"
+                                        data-target="#correo">¿Olvidó su correo electrónico?</a></small>
+                               <div *ngIf="!loginForm.controls['username'].valid && loginForm.controls['username']?.dirty" class="invalid-feedback">
+                                    <div>Debe ingresar un Email válido.</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="login">Contraseña</label>
+                                <input type="password" formControlName="password" class="form-control" id="pass"
+                                    required="" />
+                                <small class="form-text a-text" (click)="openModalOlvidoPass()"><a href="" data-toggle="modal"
+                                        data-target="#recuperarClave">¿Olvidó su contraseña?</a></small>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" [checked]="aceptaTerminos"
+                                    (change)="aceptaTerminos = !aceptaTerminos" class="form-check-input" id="acepto"
+                                    required="" />
+                                <label class="form-check-label" for="acepto">Acepto los <a (click)="mostrarTerminos()">términos y
+                                        condiciones</a></label>
+                            </div>
+                            <!-- El button sera 'disabled' hasta que el usuario acepte los términos y condiciones -->
+                            <button type="submit" class="btn btn-primary btn-block" (click)="ingresar()">
+                                Iniciar sesión
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-center bg bg--h-100">
+                    <div class="registro">
+                        <h1>Bienvenido a</h1>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Praesentium inventore, maiores nulla corrupti incidunt dicta
+                            veritatis aliquid nobis natus quae illo quaerat excepturi labore
+                            repellat laudantium, ipsam voluptatibus doloremque earum?
+                        </p>
+                        <!-- <button class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#registro">Registrarse</button> -->
+                        <button class="btn btn-outline-light btn-lg" (click)="openModal()">
+                            {{btnText}}
+                        </button>
+                        <p *ngIf="!registrase" (click)="resetearRegistro()" >¿No ha recibido el código?</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+    <!-- MODALES -->
+
+    <!-- Modal de error por no ser cliente -->
+    <div class="modal HCOnline" id="registroError">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa--error fa-2x fa-times-circle pr-2"></i><span>Fuera de registro</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Los datos introducidos no corresponden con nuestro registro. Por
+                        favor intente nuevamente o comuníquese con nuestro servicio de
+                        asistencia al <strong>030345666 </strong>para obtener ayuda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de advertencia si no posee email asociado -->
+    <div class="modal HCOnline" id="correo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa--advertencia fa-2x fa-exclamation-circle pr-2"></i><span>Importante</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Si aún no tiene una dirección de correo electrónico asociada, por
+                        favor contáctese con nuestro servicio de asistencia al
+                        <strong>030345666</strong> para registrar su e-mail.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal RECUPERAR CLAVE -->
+
+</section>

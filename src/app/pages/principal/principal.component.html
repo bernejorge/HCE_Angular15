@@ -1,22 +1,49 @@
-<p>
+<!-- <p>
   principal works!
 
 </p>
-<button type="button" class="btn btn-primary" (click)="openModal()">Prueba</button>
+<button type="button" class="btn btn-primary" (click)="openModal()">Prueba</button> -->
 <!-- <button type="button" class="btn btn-primary" (click)="login.openLogin(true)">Login</button>
 <app-login #login></app-login> -->
+<div class="main">
+  <div class="container">
+    <div>
+      <div class="middle">
+        <div id="login">
+          <form [formGroup]="loginForm" class="formIngreso" action="" id="iniciarSesionRec">
+            <fieldset class="clearfix">
+              <p>
+                <span class="fa fa-user"></span><input type="email" Placeholder="Email" formControlName="username"
+                  required />
+              </p>
+              <!-- JS because of IE support; better: placeholder="Username" -->
+              <p>
+                <span class="fa fa-lock"></span><input type="password" Placeholder="Contraseña" formControlName="password"
+                  required />
+              </p>
+              <!-- JS because of IE support; better: placeholder="Password" -->
 
-<ng-template #content let-c="close" let-d="dismiss">
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<p>Hello, World!</p>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-	</div>
-</ng-template>
+              <div style="display: flex; align-items: center;">
+                <!-- <span style="width: 48%; text-align: left; display: inline-block"><a class="small-text" href="#">Olvido su contraseña?</a></span> -->
+                <span style="width: 50%; text-align: right; display: inline-block"><input type="submit" value="Ingresar"
+                    (click)="ingresar()" /></span>
+              </div>
+            </fieldset>
+            <div class="clearfix"></div>
+          </form>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+          <div class="clearfix"></div>
+        </div>
+        <!-- end login -->
+        <div class="logo">
+          <div class="grupo">
+            <img src="./assets/client/ReinaFabiola/isologotypeNegative.png" alt="Logotipo" class="img-fluid" />
+            <div class="clearfix"></div>
+            <button class="btn" (click)="openModalResgistrar()">Registrarse</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

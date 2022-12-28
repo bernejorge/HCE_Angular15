@@ -1,0 +1,16 @@
+
+  <div class="modal-header">
+      <h5 class="modal-title"><i class="fa fa--exito fa-2x fa-check-circle pr-2"></i><span>Gracias por registrarse</span></h5>
+      <button type="button" class="close" aria-label="Cerrar" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+  </div>
+
+  <div class="modal-body">
+      <p>Enviaremos un código de verificación a su correo electrónico {{email}} para confirmar su dirección.</p>
+      <p>Haga clic en “Aceptar” para completar el proceso.</p>
+      <button type="button" class="btn btn-primary btn-block mt-3" (click)="activeModal.close('click')">Aceptar</button>
+      <!-- <small class="form-text text-muted d-block"><a href="#">¿No reconoce ese email?</a></small> -->
+  </div>
+
+
