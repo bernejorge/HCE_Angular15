@@ -1,4 +1,4 @@
-<div >
+<div id="print-section">
     
             <div class="modal-header">
                 <div class="modal-header__title">
@@ -110,7 +110,10 @@
                     </button>
                 </div>
                 <button type="button" class="btn btn-light" (click)="activeModal.close('Close click')">Cerrar</button>
-                
+                <button
+  [useExistingCss]="true"
+	printSectionId="print-section"
+	ngxPrint>print</button>
             </div>
             
         

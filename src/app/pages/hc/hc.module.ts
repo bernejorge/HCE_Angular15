@@ -25,6 +25,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import { EstudiosImgenComponent } from './resultados-estudios-modales/estudios-imagen/estudios-imgen.component';
 import { OrderModule } from "ngx-order-pipe";
+import {NgxPrintModule} from 'ngx-print';
+
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { OrderModule } from "ngx-order-pipe";
     SpinnerModule,
     ChartModule,
     OrderModule, 
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxPrintModule
   ],
   providers: [DatePipe],
   declarations: [
@@ -56,6 +59,7 @@ import { OrderModule } from "ngx-order-pipe";
     CardProfesionalesComponent,
     CardEstudiosComponent,
     EstudiosImgenComponent,
+    
     
   ],
   entryComponents:[ ModalComponent, InternacionModalComponent],
