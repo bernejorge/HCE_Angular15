@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Chart } from 'angular-highcharts';
 import { Subscription } from 'rxjs';
 import { Base } from '../../../Models/BaseModel';
@@ -184,16 +185,19 @@ export class ResumenClinicoComponent implements OnInit, OnDestroy {
               week: 'Semana de %d-%m-%Y'
             }
           },
-          // series: [
-          //   {
-          //     name: 'Sistolica',
-          //     data: this.serieSistolica,
-          //   },
-          //   {
-          //     name: 'Diastolica',
-          //     data: this.serieDiastolica
-          //   }
-          // ]
+         
+          series: [
+            {
+              type: 'line',
+              name: 'Sistolica',
+              data: this.serieSistolica,
+            },
+            {
+              type: 'line',
+              name: 'Diastolica',
+              data: this.serieDiastolica
+            }
+          ]
         });
       });
   }

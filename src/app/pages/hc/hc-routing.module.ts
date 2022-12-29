@@ -13,13 +13,14 @@ import { SesionPermisosGuard } from '../../guards/sesion-permisos.guard';
 const rutas: Routes = [
   {path: '', component:MainComponent,
     children: [
-      {path:'', redirectTo:'resumen', pathMatch: 'full'},
+      
       {path:'resumen', component:ResumenClinicoComponent},
       {path:'motivo-consulta', component: MotivoConsultaComponent},
       {path: 'profesionales', component:ProfesionalesComponent },
       {path: 'medicamentos', component:MedicamentosComponent},
       {path: 'resultados', component: ResultadosEstudiosComponent},
       {path: 'internaciones', component:InternacionesComponent},
+      {path:'**', redirectTo:'resumen', pathMatch: 'full'},
     ],}
 ];
 

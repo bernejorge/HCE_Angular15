@@ -20,7 +20,7 @@ import { InternacionModalComponent } from './internaciones/internacion-modal/int
 import { CardMedicamentosComponent } from './footer/card-medicamentos/card-medicamentos.component';
 import { CardProfesionalesComponent } from './footer/card-profesionales/card-profesionales.component';
 import { CardEstudiosComponent } from './footer/card-estudios/card-estudios.component';
-import { ChartModule } from "angular-highcharts";
+import { ChartModule } from 'angular-highcharts';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 import { EstudiosImgenComponent } from './resultados-estudios-modales/estudios-imagen/estudios-imgen.component';
