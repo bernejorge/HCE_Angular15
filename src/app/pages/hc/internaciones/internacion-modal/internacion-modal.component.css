@@ -1,0 +1,21 @@
+h6 {
+    padding: .5rem .75rem;
+    border-bottom: .0625rem solid #000000 !important;
+    border-top: .0625rem solid #000000 !important;
+    color: #8c92a1;
+    text-transform: uppercase;
+}
+
+@media print {
+   
+    button{
+        display:none !important;
+    }
+    #mainHCE .modal .modal-dialog .modal-content .modal-body .report-list__title h6 {
+        padding: .5rem .75rem;
+        border-bottom: .0625rem solid #5f5d5d !important;
+        border-top: .0625rem solid #5f5d5d !important;
+        color: #8c92a1;
+        text-transform: uppercase;
+    }
+}

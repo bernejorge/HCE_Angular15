@@ -12,10 +12,13 @@ import { RespuestaEpicrisis } from '../../../../Models/RespuestasInterfaces';
 export class InternacionModalComponent implements OnInit {
 
   @Input() Epicrisises!: EpicrisisClass[];
+  @Input() Episodio!: Episodio;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+    console.log(this.Episodio);
+    console.log(this.Epicrisises);
   }
   imprimir() {
     // const printContent = document.getElementById("printThis");
