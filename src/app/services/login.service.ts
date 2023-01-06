@@ -23,7 +23,7 @@ export class LoginService {
 
 
   }
-  login(username: string|null, password: string|null): Observable<any> {
+  login(username: string | null, password: string | null): Observable<any> {
     let httpOptions = {
       headers: this.getHttpHeaders(),
     };
@@ -46,7 +46,7 @@ export class LoginService {
         })
       );
   }
-  public registarse(tipoDocumento: string, documento: string|null, nacimiento: string|null): Observable<any> {
+  public registarse(tipoDocumento: string, documento: string | null, nacimiento: string | null): Observable<any> {
     const url = window.location.origin;
     const urlReg = url + "/validar-registro"
     let httpOptions = {
@@ -92,9 +92,9 @@ export class LoginService {
     }
     return this.http.post(`${environment.API_URL}/api/Sesion/ValidarCodigoTemporal`, body, httpOptions)
       .pipe(
-        map((res:any) =>{
-          if(res.IdExterno){
-            sessionStorage.setItem('idExterno', res.IdExterno );
+        map((res: any) => {
+          if (res.IdExterno) {
+            sessionStorage.setItem('idExterno', res.IdExterno);
             //localStorage.removeItem('emailAValidar');
           }
           return res;
