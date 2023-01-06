@@ -11,7 +11,7 @@ import { ResultadosEstudiosComponent } from './resultados-estudios/resultados-es
 import { SesionPermisosGuard } from '../../guards/sesion-permisos.guard';
 
 const rutas: Routes = [
-  {path: '', component:MainComponent,
+  {path: '', component:MainComponent, canActivateChild:[SesionPermisosGuard],
     children: [
       
       {path:'resumen', component:ResumenClinicoComponent},

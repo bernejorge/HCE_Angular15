@@ -23,7 +23,7 @@ export class SesionPermisosGuard implements CanActivate, CanActivateChild  {
         icon: 'error',
         title: 'Error',
         text: 'Su sesión ha expirado',
-       })
+       });
       this.router.navigate(['/home']);
       return false;
     }      
@@ -35,7 +35,11 @@ export class SesionPermisosGuard implements CanActivate, CanActivateChild  {
     const result = this.LoginSrv.isLoggedIn()
     
     if(!result){
-      alert("Su sesión a expirado");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Su sesión ha expirado',
+       });
       this.router.navigate(['/']);
     }      
 
