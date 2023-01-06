@@ -95,7 +95,7 @@ export class LoginService {
         map((res:any) =>{
           if(res.IdExterno){
             sessionStorage.setItem('idExterno', res.IdExterno );
-            localStorage.removeItem('emailAValidar');
+            //localStorage.removeItem('emailAValidar');
           }
           return res;
         })

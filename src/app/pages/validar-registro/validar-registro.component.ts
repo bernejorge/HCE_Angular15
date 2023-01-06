@@ -46,6 +46,8 @@ export class ValidarRegistroComponent implements OnInit {
             //codigo respuesta exitosa
             console.log(res);
             if (res.TienePerfil ){
+              //si tiene perfil borrar el mail de validacion del localstorage, si no borrarlo depsues de genrar la contraseña
+              localStorage.removeItem('emailAValidar');
               this.msgValidacionExitoConPerfil();            
             }else{
               this.msgValidacionExito();

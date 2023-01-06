@@ -53,6 +53,7 @@ export class GenerarPasswordComponent implements OnInit {
       next: (res:any)=>{
         //respuesta de exito.
         console.log(res);
+        localStorage.removeItem('emailAValidar');
         this.showAlert("Ha generado su contraseña de manera exitosa. ")
       },
       error: (x: any) => {
