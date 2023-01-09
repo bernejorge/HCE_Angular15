@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
+import { Persona } from 'src/app/Models/Persona';
+import { PersonasService } from 'src/app/services/personas.service';
 import {  EpicrisisClass } from '../../../../Models/Epicrisis';
 import { Episodio } from '../../../../Models/Episodio';
 import { RespuestaEpicrisis } from '../../../../Models/RespuestasInterfaces';
@@ -13,8 +16,23 @@ export class InternacionModalComponent implements OnInit {
 
   @Input() Epicrisises!: EpicrisisClass[];
   @Input() Episodio!: Episodio;
+  private suscripcion: Subscription;
+ 
+  public presonaSeleccionada!: Persona|undefined;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, public personaSrv: PersonasService) { 
+    this.suscripcion = this.personaSrv.$personaSeleccionadaObs
+      .subscribe(
+        {
+          next: (personaSeleccionada) => {
+            this.presonaSeleccionada = personaSeleccionada;
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        }        
+      )
+  }
 
   ngOnInit() {
     console.log(this.Episodio);

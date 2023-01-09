@@ -49,6 +49,5 @@ export class HeaderComponent implements OnInit, OnDestroy{
   cerrarSesion(){
       this.loginSrv.logout();
       this.router.navigate(['/home']); 
-
   }
 }

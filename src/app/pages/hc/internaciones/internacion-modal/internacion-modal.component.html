@@ -16,31 +16,31 @@
             <div class="col-auto">
                 <div class='form-group row'>
                     <label class='control-label col-auto'>Fecha informe:</label>
-                    <p class='form-control-static input-read col-auto'>21-05-2019</p>
+                    <p class='form-control-static input-read col-auto'>{{Episodio.FechaIngreso | date}}</p>
                 </div>
             </div>
             <div class="col-auto">
                 <div class='form-group row'>
                     <label class='control-label col-auto'>Nombre:</label>
-                    <p class='form-control-static input-read col-auto'>Mantovani, Maria Cecilia</p>
+                    <p class='form-control-static input-read col-auto'>{{presonaSeleccionada?.NombreCompleto}} </p>
                 </div>
             </div>
             <div class="col-auto">
                 <div class='form-group row'>
                     <label class='control-label col-auto'>Sexo:</label>
-                    <p class='form-control-static input-read col-auto'>Femenino</p>
+                    <p class='form-control-static input-read col-auto'>{{presonaSeleccionada?.Sexo}}</p>
                 </div>
             </div>
             <div class="col-auto">
                 <div class='form-group row'>
                     <label class='control-label col-auto'>Edad:</label>
-                    <p class='form-control-static input-read col-auto'>37 años</p>
+                    <p class='form-control-static input-read col-auto'>{{presonaSeleccionada?.Edad}}</p>
                 </div>
             </div>
             <div class="col-auto">
                 <div class='form-group row'>
                     <label class='control-label col-auto'>Informe:</label>
-                    <p class='form-control-static input-read col-auto'>Síndrome confusional</p>
+                    <p class='form-control-static input-read col-auto'>{{Episodio.MotivoInternacion}}</p>
                 </div>
             </div>
         </div>
