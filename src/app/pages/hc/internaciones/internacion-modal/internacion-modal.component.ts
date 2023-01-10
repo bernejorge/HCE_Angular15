@@ -14,7 +14,7 @@ import { RespuestaEpicrisis } from '../../../../Models/RespuestasInterfaces';
 })
 export class InternacionModalComponent implements OnInit {
 
-  @Input() Epicrisises!: EpicrisisClass[];
+  @Input() Epicrisis!: EpicrisisClass[];
   @Input() Episodio!: Episodio;
   private suscripcion: Subscription;
  
@@ -32,11 +32,12 @@ export class InternacionModalComponent implements OnInit {
           }
         }        
       )
+      
   }
 
   ngOnInit() {
     console.log(this.Episodio);
-    console.log(this.Epicrisises);
+    console.log(this.Epicrisis);
   }
   imprimir() {
     // const printContent = document.getElementById("printThis");

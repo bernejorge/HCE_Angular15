@@ -55,7 +55,7 @@ export class InternacionesComponent implements OnInit, OnDestroy{
         if(res.Epicrisis){
           epis = res.Epicrisis.map(x=> Object.assign(new EpicrisisClass(), x));
           const modalRef = this.modalService.open(InternacionModalComponent, {size: 'lg'});
-          modalRef.componentInstance.Epicrisises = epis;
+          modalRef.componentInstance.Epicrisis = epis;
           modalRef.componentInstance.Episodio = episodio;
         }
       }

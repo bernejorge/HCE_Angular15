@@ -44,12 +44,17 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
         if (err.error) {
 
             if (err.error.Message) {
-                if (typeof err.error.Message === 'string') {
-                    m = err.error.Message;
-                } else {
+                try {
                     let obj = JSON.parse(err.error.Message);
                     m = obj.Message;
+                } catch (error) {
+                    if (typeof err.error.Message === 'string') {
+                        m = err.error.Message;
+                    } else {
+                        m = 'Ha ocurrido un error inesperado. Intente de nuevo mas tarde';
+                    }
                 }
+
             } else if (err.error.Mensaje) {
                 m = err.error.Mensaje;
             }
