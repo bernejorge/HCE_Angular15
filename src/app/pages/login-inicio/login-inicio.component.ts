@@ -9,6 +9,7 @@ import { RegistroExitosoComponent } from './modales/registro-exitoso/registro-ex
 import { TerminosCondicionesComponent } from './modales/terminos-condiciones/terminos-condiciones.component';
 import swal from 'sweetalert2';
 import { OlvidoSuPassComponent } from './modales/olvido-su-pass/olvido-su-pass.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-login-inicio',
@@ -23,23 +24,40 @@ export class LoginInicioComponent implements OnInit {
 	loginForm!: FormGroup;
 	string = "";
 	aceptaTerminos = false;
-	registrase:boolean = true;
-	btnText:string = "Registrarse"
-	
-	constructor(private fb: FormBuilder, private modalService: NgbModal, private loginSrv: LoginService, private router: Router) {
+	registrase: boolean = true;
+	btnText: string = "Registrarse"
+	titulo="";
+	bienvenida="";
+
+	constructor(private fb: FormBuilder, private modalService: NgbModal, private loginSrv: LoginService,
+			 private router: Router, private http: HttpClient) 
+	{
 		this.loginForm = this.fb.group({
 			username: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 			password: [''],
 		});
 		//saber que texto mostrar en el btn de registro y que modal disparar
 		this.setRegistro();
+
+		this.getJsonBienvenida().subscribe(
+			(res: any)=>{
+				try {
+					this.titulo = res.titulo;
+					this.bienvenida= res.bienvenida;
+				} catch (error) {
+					
+				}
+			}
+		);
+
+
 	}
 	setRegistro() {
 		const mail = localStorage.getItem("emailAValidar");
 		if (mail == null || mail.length == 0) {
 			this.registrase = true;
 			this.btnText = "Registrarse";
-		}else{
+		} else {
 			this.registrase = false;
 			this.btnText = "Validar Codigo Temporal";
 		}
@@ -47,21 +65,21 @@ export class LoginInicioComponent implements OnInit {
 	ngOnInit() {
 
 	}
-	validar():boolean{
-		if(!this.aceptaTerminos){
+	validar(): boolean {
+		if (!this.aceptaTerminos) {
 			Swal.fire({
 				icon: 'info',
 				title: 'Importante.',
-				text: "Debe aceptar los Términos y Condiciones para poder ingresar.",				
-			   })
-			   return false;
+				text: "Debe aceptar los Términos y Condiciones para poder ingresar.",
+			})
+			return false;
 		}
 
 		return true;
 	}
 	ingresar() {
 		//definicion del observador
-		if(this.validar()){
+		if (this.validar()) {
 
 			const LoginObserver = {
 				next: (x: any) => {
@@ -73,7 +91,7 @@ export class LoginInicioComponent implements OnInit {
 				// 	console.error(x);
 				// 	window.alert("Error: " + x.message);
 				// }
-	
+
 			}
 			console.log(this.loginForm.controls['username'].value);
 			this.loginSrv.login(this.loginForm.controls['username'].value,
@@ -84,34 +102,34 @@ export class LoginInicioComponent implements OnInit {
 	}
 
 	openModal() {
-		if(this.registrase){
+		if (this.registrase) {
 			this.modalRegRef = this.modalService.open(RegistrarseComponent);
 			this.modalRegRef.result.then((result: any) => {
 				if (result) {
-	
+
 					const doc = result.controls.docnumber.value;
 					const nac = new Date(result.controls.nac.value);
 					this.regitrarse(doc, nac);
 				}
-			}, (reason: any)=>{
+			}, (reason: any) => {
 				console.log(reason);
 				this.setRegistro();
 			}
 			);
-		}else{
+		} else {
 			this.router.navigate(['/validar-registro']);
 		}
-		
+
 	}
 
-	mostrarTerminos(){
+	mostrarTerminos() {
 		const modalRef = this.modalService.open(TerminosCondicionesComponent, { size: 'lg' });
 
 	}
 	regitrarse(doc: string, nac: Date) {
 		//definicion del observador
 		const RegistrarseObserver = {
-			next: (x:any) => {
+			next: (x: any) => {
 				//respuesta de exito
 				console.log(x);
 				//mostrar mensaje de exito, mostrar modal
@@ -134,17 +152,17 @@ export class LoginInicioComponent implements OnInit {
 		this.loginSrv.registarse("1", doc, nac.toISOString())
 			.subscribe(RegistrarseObserver);
 	}
-	resetearRegistro(){
+	resetearRegistro() {
 		this.registrase = true;
-		
+
 		this.openModal();
 	}
 	isValidEmail(): boolean {
-		
-		
+
+
 		return this.loginForm.controls['username'].valid && this.loginForm.controls['username'].touched;
 	}
-	openModalOlvidoPass(){
+	openModalOlvidoPass() {
 		const modalRef = this.modalService.open(OlvidoSuPassComponent);
 	}
 	obscure_email(email: string) {
@@ -165,5 +183,11 @@ export class LoginInicioComponent implements OnInit {
 		result += domain.substring(dot);
 
 		return result;
+	}
+	getJsonBienvenida() {
+		// puedes colocar esta funcion en tu servicio e injectando el servicio acceder
+		// a el desde cualquier componente
+		let path = './assets/bienvenida.json';
+		return this.http.get(path);
 	}
 }
