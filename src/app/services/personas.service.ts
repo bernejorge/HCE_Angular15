@@ -25,10 +25,11 @@ export class PersonasService {
   });
 
   constructor(private http: HttpClient, private loginService: LoginService, private configSrv : ConfigService) { 
-    this.obtenerRelaciones();
+    
     this.configSrv.getConfigJson().subscribe(
       (conf:any)=>{
         this.API_URL = conf.API_URL;
+        this.obtenerRelaciones();
       }
     );
   }

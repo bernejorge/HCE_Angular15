@@ -10,8 +10,8 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // let authenticationService = this.injector.get(AuthenticationService);
-    const auth = this.injector.get(LoginService);
-    let token = auth.getToken();
+    
+    let token = localStorage.getItem('AccessToken');
     console.log('Token intercept: ' + token);
     if (!token) {
       token = "1234"
