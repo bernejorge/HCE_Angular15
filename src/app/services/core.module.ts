@@ -7,6 +7,7 @@ import { SpinnerService } from './spinner.service';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SesionPermisosGuard } from '../guards/sesion-permisos.guard';
+import { ConfigService } from './config.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { SesionPermisosGuard } from '../guards/sesion-permisos.guard';
         FormsModule,
         NgbActiveModal,
         SesionPermisosGuard,
-
+        ConfigService
     ]
 })
 export class CoreModule { }

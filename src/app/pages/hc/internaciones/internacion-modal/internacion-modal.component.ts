@@ -15,7 +15,8 @@ import { RespuestaEpicrisis } from '../../../../Models/RespuestasInterfaces';
 export class InternacionModalComponent implements OnInit {
 
   @Input() Epicrisis!: EpicrisisClass[];
-  @Input() Episodio!: Episodio;
+  @Input()
+  Episodio!: Episodio;
   private suscripcion: Subscription;
  
   public presonaSeleccionada!: Persona|undefined;

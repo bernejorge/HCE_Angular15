@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { Episodio } from '../Models/Episodio';
 import { Persona } from '../Models/Persona';
 import { RespuestaEpicrisis, RespuestaEpisodios, RespuestaInformes, RespuestaPrescripcion, RespuestaProblemas, RespuestaSignosVitales, RespuestaTurnos } from '../Models/RespuestasInterfaces';
+import { ConfigService } from './config.service';
 import { LoginService } from './login.service';
 
 @Injectable()
@@ -17,15 +18,21 @@ export class PersonasService {
   private pSeleccionada!: Persona;
   public $personaSeleccionadaObs = this.personaSeleccionada.asObservable();
   public $relacionesObs = this.relaciones.asObservable();
-
+  private API_URL : string="";
   private  headers= new HttpHeaders({
     
     'Accept': 'application/json'
   });
 
-  constructor(private http: HttpClient, private loginService: LoginService) { 
+  constructor(private http: HttpClient, private loginService: LoginService, private configSrv : ConfigService) { 
     this.obtenerRelaciones();
+    this.configSrv.getConfigJson().subscribe(
+      (conf:any)=>{
+        this.API_URL = conf.API_URL;
+      }
+    );
   }
+
 
   async obtenerRelaciones(): Promise<any> {
     let httpOptions = {
@@ -36,7 +43,7 @@ export class PersonasService {
     };
     let body = ``;
     let r: Persona[];
-     await this.http.get(`${environment.API_URL}/api/Portal/ObtenerRelaciones`, httpOptions)
+     await this.http.get(`${this.API_URL}/api/Portal/ObtenerRelaciones`, httpOptions)
       .toPromise().then(
         (res:any) =>{          
           r = res.Personas;          
@@ -63,7 +70,7 @@ export class PersonasService {
   obtenerInformes(){   
     
     ///api/Portal/ObtenerInformes
-    return this.http.get<RespuestaInformes>(`${environment.API_URL}/api/Portal/ObtenerInformes`,this.getHttpOptionsByIdPersona());
+    return this.http.get<RespuestaInformes>(`${this.API_URL}/api/Portal/ObtenerInformes`,this.getHttpOptionsByIdPersona());
   }
 
   obtenerInformesPorId(id: number){
@@ -75,40 +82,40 @@ export class PersonasService {
       params: params
     }
     //api/Portal/ObtenerInformesPorId
-    return this.http.get<RespuestaInformes>(`${environment.API_URL}/api/Portal/ObtenerInformesPorId`,httpOptions);
+    return this.http.get<RespuestaInformes>(`${this.API_URL}/api/Portal/ObtenerInformesPorId`,httpOptions);
   }
 
   obtenerMedicacion(){    
     ///api/Portal/ObtenerPrescripciones
 
-    return this.http.get<RespuestaPrescripcion>(`${environment.API_URL}/api/Portal/ObtenerPrescripciones`,this.getHttpOptionsByIdPersona())
+    return this.http.get<RespuestaPrescripcion>(`${this.API_URL}/api/Portal/ObtenerPrescripciones`,this.getHttpOptionsByIdPersona())
     
   }
 
   obtenerProfesionalesVisitados() {
 
-    return this.http.get<RespuestaTurnos>(`${environment.API_URL}/api/Portal/ObtenerTurnos`,this.getHttpOptionsByIdPersona())
+    return this.http.get<RespuestaTurnos>(`${this.API_URL}/api/Portal/ObtenerTurnos`,this.getHttpOptionsByIdPersona())
   }
 
   obtenerAlergias(){
     ///api/Portal/ObtenerAlergiasPorPersona
-    return this.http.get<RespuestaProblemas>(`${environment.API_URL}/api/Portal/ObtenerAlergiasPorPerson`,this.getHttpOptionsByIdPersona())
+    return this.http.get<RespuestaProblemas>(`${this.API_URL}/api/Portal/ObtenerAlergiasPorPerson`,this.getHttpOptionsByIdPersona())
   }
 
   obtenerSignosVitales(){
     //api/Portal/ObtenerSignosVitales
-    return this.http.get<RespuestaSignosVitales>(`${environment.API_URL}/api/Portal/ObtenerSignosVitales`,this.getHttpOptionsByIdPersona());
+    return this.http.get<RespuestaSignosVitales>(`${this.API_URL}/api/Portal/ObtenerSignosVitales`,this.getHttpOptionsByIdPersona());
   }
 
   obtenerProblemas(){
 
     ///api/Portal/ObtenerProblemas
-    return this.http.get<RespuestaProblemas>(`${environment.API_URL}/api/Portal/ObtenerProblemas`,this.getHttpOptionsByIdPersona())
+    return this.http.get<RespuestaProblemas>(`${this.API_URL}/api/Portal/ObtenerProblemas`,this.getHttpOptionsByIdPersona())
   }
 
   obtenerEpisodios(){
     ///api/Portal/ObtenerEpisodios
-    return this.http.get<RespuestaEpisodios>(`${environment.API_URL}/api/Portal/ObtenerEpisodios`,this.getHttpOptionsByIdPersona())
+    return this.http.get<RespuestaEpisodios>(`${this.API_URL}/api/Portal/ObtenerEpisodios`,this.getHttpOptionsByIdPersona())
 
   }
 
@@ -122,7 +129,7 @@ export class PersonasService {
     }
 
     //api/Portal/ObtenerEpicrisis
-    return this.http.get<RespuestaEpicrisis>(`${environment.API_URL}/api/Portal/ObtenerEpicrisis`,httpOptions);
+    return this.http.get<RespuestaEpicrisis>(`${this.API_URL}/api/Portal/ObtenerEpicrisis`,httpOptions);
 
   }
 

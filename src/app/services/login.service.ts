@@ -2,16 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+
 //import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { User } from '../Models/User';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class LoginService {
   public loggedIn = new BehaviorSubject<boolean>(false);
+  private API_URL : string = "";
+  constructor(private http: HttpClient, private configSrv: ConfigService) { 
+      this.configSrv.getConfigJson().subscribe(
+        (configJson: any) => {
+          try {
+            this.API_URL = configJson.API_URL;
+          } catch (error) {
+            
+          }
+        });
+  }
 
-  constructor(private http: HttpClient) { }
-
+  
   prueba() {
     window.alert("hola");
   }
@@ -35,7 +46,7 @@ export class LoginService {
       IdTipoVinculo: 2,
       ClientToken: 333
     }
-    return this.http.post(`${environment.API_URL}/api/Sesion/Login`, body, httpOptions)
+    return this.http.post(`${this.API_URL}/api/Sesion/Login`, body, httpOptions)
       .pipe(
         map((res: any) => {
           console.log('Res:= ', res);
@@ -61,7 +72,7 @@ export class LoginService {
     };
     let bodystr = JSON.stringify(body);
 
-    return this.http.post(`${environment.API_URL}/api/Sesion/ValidarAlta`, bodystr, httpOptions)
+    return this.http.post(`${this.API_URL}/api/Sesion/ValidarAlta`, bodystr, httpOptions)
       .pipe(
         map((res: any) => {
           console.log(res);
@@ -90,7 +101,7 @@ export class LoginService {
       Codigo: codigo,
       Email: mail,
     }
-    return this.http.post(`${environment.API_URL}/api/Sesion/ValidarCodigoTemporal`, body, httpOptions)
+    return this.http.post(`${this.API_URL}/api/Sesion/ValidarCodigoTemporal`, body, httpOptions)
       .pipe(
         map((res: any) => {
           if (res.IdExterno) {
@@ -121,7 +132,7 @@ export class LoginService {
       "EmailUsuario": mail,
       "IdExterno": idExt,
     }
-    return this.http.post(`${environment.API_URL}/api/Sesion/RegistrarPerfilConVinculo`, body, httpOptions);
+    return this.http.post(`${this.API_URL}/api/Sesion/RegistrarPerfilConVinculo`, body, httpOptions);
   }
   private saveToken(token: string): void {
     localStorage.setItem('AccessToken', token);
