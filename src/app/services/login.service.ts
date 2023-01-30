@@ -6,12 +6,13 @@ import { catchError, map } from 'rxjs/operators';
 //import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { User } from '../Models/User';
 import { ConfigService } from './config.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
   public loggedIn = new BehaviorSubject<boolean>(false);
   private API_URL : string = "";
-  constructor(private http: HttpClient, private configSrv: ConfigService) { 
+  constructor(private http: HttpClient, private configSrv: ConfigService, private router: Router)  { 
       this.configSrv.getConfigJson().subscribe(
         (configJson: any) => {
           try {
@@ -58,8 +59,14 @@ export class LoginService {
       );
   }
   public registarse(tipoDocumento: string, documento: string | null, nacimiento: string | null): Observable<any> {
+
+    var currentAbsoluteUrl = window.location.href;
+    var currentRelativeUrl = this.router.url;
+    var index = currentAbsoluteUrl.indexOf(currentRelativeUrl);
+    var baseUrl = currentAbsoluteUrl.substring(0, index);
     const url = window.location.origin;
-    const urlReg = url + "/validar-registro"
+   
+    const urlReg = baseUrl + "/validar-registro"
     let httpOptions = {
       headers: this.getHttpHeaders(),
     };

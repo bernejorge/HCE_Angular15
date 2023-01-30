@@ -32,6 +32,11 @@ export class LoginInicioComponent implements OnInit {
 	constructor(private fb: FormBuilder, private modalService: NgbModal, private loginSrv: LoginService,
 			 private router: Router, private http: HttpClient) 
 	{
+		var currentAbsoluteUrl = window.location.href;
+		var currentRelativeUrl = this.router.url;
+		var index = currentAbsoluteUrl.indexOf(currentRelativeUrl);
+		var baseUrl = currentAbsoluteUrl.substring(0, index);
+		console.log("URL BASE: " + baseUrl);
 		this.loginForm = this.fb.group({
 			username: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
 			password: [''],
@@ -48,8 +53,7 @@ export class LoginInicioComponent implements OnInit {
 					
 				}
 			}
-		);
-
+		);		
 
 	}
 	setRegistro() {
