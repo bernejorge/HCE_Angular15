@@ -36,9 +36,14 @@ export class LoginService {
 
   }
   login(username: string | null, password: string | null): Observable<any> {
+    //limpiear el storage
+    localStorage.removeItem('AccessToken');
+    localStorage.removeItem('LastVisit');
+    
     let httpOptions = {
       headers: this.getHttpHeaders(),
     };
+
     //let body = `Usuario=${username}&Password=${password}&LoginUnico=true&IdTipoVinculo=2&ClientToken=333`;
     let body = {
       Usuario: username,
