@@ -16,8 +16,8 @@ export abstract class Base {
 
     static validateDate(d:string |null) {
         if(d == null) return "";
-        
-        if (d ==="0001-01-01T00:00:00"){
+        if(d.length >= 10) d = d.substring(0,10);
+        if (d ==="0001-01-01"){
           return "";
         }else{
           return d;
