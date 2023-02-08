@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ConfigService } from 'src/app/services/config.service';
 import { MenuService } from '../../../services/menu.service';
 
 @Component({
@@ -14,13 +15,19 @@ export class SidebarComponent implements OnInit {
   href!: string;
   subscription: Subscription;
   browserRefresh = false;
-  constructor(private menuSrv: MenuService, private router: Router) {
+  public URL_TO_LOGIN="";
+  constructor(private menuSrv: MenuService, private router: Router, private configSrv: ConfigService) {
     menuSrv.$menuObservable.subscribe(
       {
         next: (state: boolean) => this.setState(state),
       }
     )
 
+    this.configSrv.getConfigJson().subscribe(
+      (conf:any)=>{
+        this.URL_TO_LOGIN = conf.URL_TO_LOGIN;
+      }
+    );
     this.subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.browserRefresh = !this.router.navigated;
