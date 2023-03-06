@@ -1,9 +1,9 @@
 export interface SideBarOptions{
-    HCEOnlineHabilita_resumenClinicoHCEOnline : boolean;
-    Habilita_motivoConsultaHCEOnline : boolean;
-    Habilita_profesionalesVIsitadosHCEOnline : boolean;
-    Habilita_resultadoDeEstudiosHCEOnline : boolean;
-    Habilita_medicamentosHCEOnline : boolean;
-    Habilita_internaciones : boolean;
+    HCEOnlineHabilita_resumenClinico : boolean;
+    HCEOnlineHabilita_motivoConsulta : boolean;
+    HCEOnlineHabilita_profesionalesVIsitados : boolean;
+    HCEOnlineHabilita_resultadoDeEstudios : boolean;
+    HCEOnlineHabilita_medicamentos : boolean;
+    HCEOnlineHabilita_internaciones : boolean;
     
 }

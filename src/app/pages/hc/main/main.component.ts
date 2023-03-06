@@ -33,17 +33,17 @@ export class MainComponent implements OnInit, OnDestroy {
   async getMenuOptions() {
     this.menuOptions = await this.menuSrv.getSideBarOptions();
     console.log(this.menuOptions);
-    if (this.menuOptions.HCEOnlineHabilita_resumenClinicoHCEOnline){
+    if (this.menuOptions.HCEOnlineHabilita_resumenClinico){
       this.router.navigate(['/main/resumen']);
-    } else if(this.menuOptions.Habilita_motivoConsultaHCEOnline) {
+    } else if(this.menuOptions.HCEOnlineHabilita_motivoConsulta) {
       this.router.navigate(['/main/motivo-consulta']);
-    } else if(this.menuOptions.Habilita_profesionalesVIsitadosHCEOnline){ 
+    } else if(this.menuOptions.HCEOnlineHabilita_profesionalesVIsitados){ 
       this.router.navigate(['/main/profesionales']);
-    } else if(this.menuOptions.Habilita_resultadoDeEstudiosHCEOnline){
+    } else if(this.menuOptions.HCEOnlineHabilita_resultadoDeEstudios){
       this.router.navigate(['/main/resultados']); 
-    } else if(this.menuOptions.Habilita_medicamentosHCEOnline){
+    } else if(this.menuOptions.HCEOnlineHabilita_medicamentos){
       this.router.navigate(['/main/medicamentos']);
-    } else if (this.menuOptions.Habilita_internaciones){
+    } else if (this.menuOptions.HCEOnlineHabilita_internaciones){
       this.router.navigate(['/main/internaciones']);
     } 
 

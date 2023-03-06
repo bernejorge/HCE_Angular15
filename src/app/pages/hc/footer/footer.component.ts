@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SideBarOptions } from 'src/app/Models/SideOptions';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  menuOptions!: SideBarOptions;
+  
+  constructor(private menuSrv: MenuService) { 
+    this.getMenuOptions();
+  }
+  async getMenuOptions() {
+    this.menuOptions = await this.menuSrv.getSideBarOptions();
+  }
 
   ngOnInit() {
+
   }
 
 }

@@ -35,7 +35,7 @@
               </div>
           </div>
       </div> -->
-      <div class="row contenidoCards">
+      <div *ngIf="menuOptions" class="row contenidoCards">
           <div class="col-12 col-lg-6 d-none">
               <div class="card">
                   <div class="card-header">
@@ -75,7 +75,7 @@
                   </div>
               </div>
           </div>
-          <div *ngIf="menuOptions.Habilita_internaciones" class="col-12 col-lg-6">
+          <div *ngIf="menuOptions.HCEOnlineHabilita_internaciones" class="col-12 col-lg-6">
               <div class="card">
                   <div class="card-header">
                       <div class="row">
@@ -114,7 +114,7 @@
                   </div>
               </div>
           </div>
-          <div *ngIf="menuOptions.Habilita_resultadoDeEstudiosHCEOnline" class="col-12 col-lg-6">
+          <div *ngIf="menuOptions.HCEOnlineHabilita_resultadoDeEstudios" class="col-12 col-lg-6">
               <div class="card">
                   <div class="card-header">
                       <div class="row">
@@ -172,7 +172,7 @@
                   </div>
               </div>
           </div>
-          <div *ngIf="menuOptions.Habilita_medicamentosHCEOnline" class="col-12 col-lg-6">
+          <div *ngIf="menuOptions.HCEOnlineHabilita_medicamentos" class="col-12 col-lg-6">
               <div class="card">
                   <div class="card-header">
                       <div class="row">

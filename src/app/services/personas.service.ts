@@ -44,7 +44,7 @@ export class PersonasService {
     };
     let body = ``;
     let r: Persona[];
-     await this.http.get(`${this.API_URL}/api/Portal/ObtenerRelaciones`, httpOptions)
+     await  this.http.get(`${this.API_URL}/api/Portal/ObtenerRelaciones`, httpOptions)
       .toPromise().then(
         (res:any) =>{          
           r = res.Personas;          

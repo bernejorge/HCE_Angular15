@@ -57,11 +57,11 @@ export class ResumenClinicoComponent implements OnInit, OnDestroy {
   }
   getData() {
     this.cargarSignosVitales();
-    if(this.menuOptions.Habilita_internaciones) this.cargarInternaciones();
+    if(this.menuOptions.HCEOnlineHabilita_internaciones) this.cargarInternaciones();
 
-    if(this.menuOptions.Habilita_medicamentosHCEOnline) this.cargarMedicamentos();
+    if(this.menuOptions.HCEOnlineHabilita_medicamentos) this.cargarMedicamentos();
 
-    if (this.menuOptions.Habilita_resultadoDeEstudiosHCEOnline) this.cargarEstudios();
+    if (this.menuOptions.HCEOnlineHabilita_resultadoDeEstudios) this.cargarEstudios();
   }
   validateDate(date: Date): string {
     const dateStr =  this.datepipe.transform(date, "yyyy-MM-ddThh:mm:ssZZZZZ");

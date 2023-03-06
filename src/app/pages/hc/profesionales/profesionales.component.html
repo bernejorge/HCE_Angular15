@@ -4,7 +4,8 @@
           <h1> Profesionales visitados </h1>
       </div>
   </div>
-  <div class="row contenidoAlerts" *ngIf="!(turnos.length>0)">
+
+  <div class="row contenidoAlerts" *ngIf="!($any(turnos)?.length>0)">
     <div class="col">
         <div class="alertContainer--primary resultados container-fluid">
             <div class="row alertRow">
