@@ -42,46 +42,46 @@
       <i class="fa fa-times" aria-hidden="true"></i>
     </button>
   </div>
-  <div class="row mainHCESidebar__list">
+  <div *ngIf="menuOptions" class="row mainHCESidebar__list">
     <div class="col mainHCESidebarList">
       <ul class="mainHCESidebarList__container">
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 0 ? 'active ' : ''" (click)="select(0)" >
+        <li *ngIf="menuOptions.HCEOnlineHabilita_resumenClinicoHCEOnline" class="mainHCESidebarList__item" [ngClass]="clicked === 0 ? 'active ' : ''" (click)="select(0)" >
           <a routerLink="resumen">
             <i class="fa fa-fw fa-file-text-o"></i>
             <p>Resumen clínico</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 1 ? 'active ' : ''" (click)="select(1)">
+        <li *ngIf="menuOptions.Habilita_motivoConsultaHCEOnline" class="mainHCESidebarList__item" [ngClass]="clicked === 1 ? 'active ' : ''" (click)="select(1)">
           <a routerLink="motivo-consulta">
             <i class="fa fa-fw fa-stethoscope"></i>
             <p>Motivos de consulta</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 2 ? 'active ' : ''" (click)="select(2)">
+        <li *ngIf="menuOptions.Habilita_profesionalesVIsitadosHCEOnline" class="mainHCESidebarList__item" [ngClass]="clicked === 2 ? 'active ' : ''" (click)="select(2)">
           <a routerLink="profesionales">
             <i class="fa fa-fw fa-user-md"></i>
             <p>Profesionales visitados</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 3 ? 'active ' : ''" (click)="select(3)">
+        <li  *ngIf="menuOptions.Habilita_resultadoDeEstudiosHCEOnline" class="mainHCESidebarList__item" [ngClass]="clicked === 3 ? 'active ' : ''" (click)="select(3)">
           <a routerLink="resultados">
             <i class="fa fa-fw fa-laptop"></i>
             <p>Resultados de estudios</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 4 ? 'active ' : ''" (click)="select(4)">
+        <li *ngIf="menuOptions.Habilita_medicamentosHCEOnline" class="mainHCESidebarList__item" [ngClass]="clicked === 4 ? 'active ' : ''" (click)="select(4)">
           <a routerLink="medicamentos">
             <i class="fa fa-fw fa-svg fa-pildora"></i>
             <p>Medicamentos</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__item" [ngClass]="clicked === 5 ? 'active ' : ''" (click)="select(5)">
+        <li *ngIf="menuOptions" class="mainHCESidebarList__item" [ngClass]="clicked === 5 ? 'active ' : ''" (click)="select(5)">
           <a routerLink="internaciones">
             <i class="fa fa-fw fa-hospital-o"></i>
             <p>Internaciones</p>
           </a>
         </li>
-        <li class="mainHCESidebarList__button" [ngClass]="clicked === 6 ? 'active ' : ''" (click)="select(6)">
+        <li *ngIf="menuOptions.Habilita_internaciones" class="mainHCESidebarList__button" [ngClass]="clicked === 6 ? 'active ' : ''" (click)="select(6)">
           <a type="button" class="btn btn-accent" (click)="goToLink(URL_TO_LOGIN)">
             Turnos online
             <i

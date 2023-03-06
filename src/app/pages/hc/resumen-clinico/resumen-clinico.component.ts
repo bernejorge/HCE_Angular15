@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Chart } from 'angular-highcharts';
 import { Subscription } from 'rxjs';
+import { SideBarOptions } from 'src/app/Models/SideOptions';
+import { MenuService } from 'src/app/services/menu.service';
 import { Base } from '../../../Models/BaseModel';
 import { Episodio } from '../../../Models/Episodio';
 import { Informe } from '../../../Models/Informe';
@@ -32,8 +34,15 @@ export class ResumenClinicoComponent implements OnInit, OnDestroy {
   episodios?: Episodio[];
   prescripciones?: Prescripcion[];
   informes?: Informe[];
+  menuOptions!: SideBarOptions;
 
-  constructor(private personaSrv: PersonasService, public datepipe: DatePipe, private modalService: NgbModal) { }
+  constructor(
+    private personaSrv: PersonasService, 
+    public datepipe: DatePipe, 
+    private modalService: NgbModal,
+    private menuSrv: MenuService) { 
+      this.getMenuOptions();
+    }
   
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();
@@ -48,9 +57,11 @@ export class ResumenClinicoComponent implements OnInit, OnDestroy {
   }
   getData() {
     this.cargarSignosVitales();
-    this.cargarInternaciones();
-    this.cargarMedicamentos();
-    this.cargarEstudios();
+    if(this.menuOptions.Habilita_internaciones) this.cargarInternaciones();
+
+    if(this.menuOptions.Habilita_medicamentosHCEOnline) this.cargarMedicamentos();
+
+    if (this.menuOptions.Habilita_resultadoDeEstudiosHCEOnline) this.cargarEstudios();
   }
   validateDate(date: Date): string {
     const dateStr =  this.datepipe.transform(date, "yyyy-MM-ddThh:mm:ssZZZZZ");
@@ -202,6 +213,24 @@ export class ResumenClinicoComponent implements OnInit, OnDestroy {
       });
   }
 
+  async getMenuOptions() {
+    this.menuOptions = await this.menuSrv.getSideBarOptions();
+    console.log(this.menuOptions);
+    // if (this.menuOptions.HCEOnlineHabilita_resumenClinicoHCEOnline){
+    //   this.router.navigate(['/main/resumen']);
+    // } else if(this.menuOptions.Habilita_motivoConsultaHCEOnline) {
+    //   this.router.navigate(['/main/motivo-consulta']);
+    // } else if(this.menuOptions.Habilita_profesionalesVIsitadosHCEOnline){ 
+    //   this.router.navigate(['/main/profesionales']);
+    // } else if(this.menuOptions.Habilita_resultadoDeEstudiosHCEOnline){
+    //   this.router.navigate(['/main/resultados']); 
+    // } else if(this.menuOptions.Habilita_medicamentosHCEOnline){
+    //   this.router.navigate(['/main/medicamentos']);
+    // } else if (this.menuOptions.Habilita_internaciones){
+    //   this.router.navigate(['/main/internaciones']);
+    // } 
+
+  }
 
 
   // add point to chart serie

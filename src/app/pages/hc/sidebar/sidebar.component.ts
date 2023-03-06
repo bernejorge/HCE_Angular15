@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SideBarOptions } from 'src/app/Models/SideOptions';
 import { ConfigService } from 'src/app/services/config.service';
 import { MenuService } from '../../../services/menu.service';
 
@@ -15,8 +16,11 @@ export class SidebarComponent implements OnInit {
   href!: string;
   subscription: Subscription;
   browserRefresh = false;
-  public URL_TO_LOGIN="";
+  public URL_TO_LOGIN = "";
+  menuOptions!: SideBarOptions
+
   constructor(private menuSrv: MenuService, private router: Router, private configSrv: ConfigService) {
+    this.getMenuOptions();
     menuSrv.$menuObservable.subscribe(
       {
         next: (state: boolean) => this.setState(state),
@@ -24,7 +28,7 @@ export class SidebarComponent implements OnInit {
     )
 
     this.configSrv.getConfigJson().subscribe(
-      (conf:any)=>{
+      (conf: any) => {
         this.URL_TO_LOGIN = conf.URL_TO_LOGIN;
       }
     );
@@ -55,15 +59,16 @@ export class SidebarComponent implements OnInit {
             this.select(5);
             break;
 
-            default:
-              this.select(0);
-              break;
+          default:
+            this.select(0);
+            break;
         }
       }
     });
 
   }
-  ngOnInit() {
+   ngOnInit() {
+    
     this.href = this.router.url;
   }
 
@@ -81,7 +86,13 @@ export class SidebarComponent implements OnInit {
     console.log("Click en el menu toggle!");
     this.menuSrv.menuToggle();
   }
-  goToLink(url: string){
+  goToLink(url: string) {
     window.open(url, "_blank");
-}
+  }
+
+  async getMenuOptions() {
+    this.menuOptions = await this.menuSrv.getSideBarOptions();
+    console.log(this.menuOptions);
+  }
+
 }
